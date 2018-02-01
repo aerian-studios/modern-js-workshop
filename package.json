@@ -1,0 +1,33 @@
+{
+  "name": "modern-js-workshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --watchAll",
+    "serve": "static-server -p 1337 .",
+    "start": "node --experimental-modules --loader ./lib/loader.mjs index.js"
+  },
+  "jest": {
+    "transform": {
+      ".*": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.0",
+    "jest": "^22.1.4",
+    "static-server": "^3.0.0",
+    "ts-jest": "^22.0.1",
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {}
+}
