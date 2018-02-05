@@ -57,7 +57,7 @@ import emojis from "./lib/emoji.js";
 ```
 
 ### Arrays and Objects
-We used `console.log` to explore the big array of emojis. We looked at `for...on` and `for...of` loops. We looked at why we used `const` to declare the variable. We then created our first proper passing version of getEmoji, using `for...of`:
+We used `console.log` to explore the big array of emojis. We looked at `for...in` and `for...of` loops. We looked at why we used `const` to declare the variable. We then created our first proper passing version of getEmoji, using `for...of`:
 
 ```javascript
 export function getEmoji(name) {
