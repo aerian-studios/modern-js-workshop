@@ -118,4 +118,4 @@ export function getEmoji(name) {
 #### Testing
 - https://facebook.github.io/jest/
 
-## Next week: the case of the missing 🐕
+## Week 02: the case of the missing 🐶
