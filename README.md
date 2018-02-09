@@ -118,7 +118,7 @@ export function getEmoji(name) {
 #### Testing
 - https://facebook.github.io/jest/
 
-## Week 02: the case of the missing 🐶
+## Week 02: 🐶 A Game of Fetch 🐶
 
 ![Stop trying to make fetch happen](https://media.giphy.com/media/5G98t8QjqBLK8/giphy.gif)
 
@@ -309,6 +309,18 @@ export const allYourBase = async (base) => {
 
 }
 // 🤘🤘🏼🤘🏽🤘🏾🤘🏿🤘🏻
+```
+
+A little refactor gives us this neater version:
+
+```javascript
+export const allYourBase = async (base) => {
+    const emojis = await fetchEmojis();
+
+    return emojis.filter(( item ) => item.base === base)
+                 .reduce((previous, current) =>  previous + getTheMoji(current), "");
+
+}
 ```
 
 Ta-da!
