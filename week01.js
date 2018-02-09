@@ -9,5 +9,7 @@ const isTheRightEmoji = (emoji, name) => {
 
 export function getEmoji(name) {
     const emoji = emojis.find((item) => isTheRightEmoji(item, name));
-    return emoji.moji;
+    if (emoji) {
+        return emoji.moji;
+    }
 }
