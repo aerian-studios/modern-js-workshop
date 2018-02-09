@@ -29,5 +29,7 @@
     "ts-jest": "^22.0.1",
     "typescript": "^2.6.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "isomorphic-unfetch": "^2.0.0"
+  }
 }
