@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watchAll",
     "serve": "static-server -p 1337 .",
-    "start": "node --experimental-modules --loader ./lib/loader.mjs index.js"
+    "start": "node --experimental-modules --loader ./lib/loader.mjs node.js"
   },
   "jest": {
     "transform": {
