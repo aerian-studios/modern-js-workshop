@@ -1,6 +1,6 @@
 import "isomorphic-unfetch";
 import { insertEmoji, allYourBase } from "./lib/emojilib.js";
-import { defaultMessage, setDefaultHeading, setUpEmojitron } from './week04.js';
+import { defaultMessage, setDefaultHeading, setUpEmojitron, emojitronValues } from './week04.js';
 
 jest.mock("isomorphic-unfetch");
 
@@ -50,11 +50,11 @@ describe('Emojitron creates an emoji selector with sensible defaults', () => {
         expect(selectEl).toBeTruthy();
     });
 
-    // it("The <select> element has multiole <option> elements", () => {
-    //     setUpEmojitron();
+    it("The <select> element has multiple <option> elements", async () => {
+        await setUpEmojitron();
     
-    //     const selectEl = document.querySelector('select');
-    
-    //     expect(selectEl.children().length).toBeGreaterThanOrEqual(3);
-    // });
+        const selectEl = document.querySelector('select');
+
+        expect(selectEl.options.length).toBeGreaterThanOrEqual(emojitronValues.length);
+    });
 })
