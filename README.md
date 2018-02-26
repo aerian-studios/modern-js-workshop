@@ -430,7 +430,7 @@ it("inserts our emoji into the header", async () => {
 // Received "<h1 id=\"heading\">💂🏻💂🏼💂🏽💂🏾💂🏿💂</h1>"
 ```
 
-But wait..this still breaks. jsdom has changed the HTML to use double quotes. Rather than trying to work out what the HTML will be generated will look like, we can introduce snapshot tests.
+But wait..this still breaks. jsdom has changed the HTML to use double quotes. We could change our test so that the HTML exactly matches, but there is an easier way. Rather than trying to work out what the HTML will be generated will look like, we can introduce snapshot tests.
 
 #### Snapshot tests
 
@@ -454,3 +454,11 @@ exports[`inserts our emoji into the header 1`] = `"<h1 id=\\"heading\\">💂🏻
 ```
 
 If we ever need to change the saved value, we can run `npx jest --updateSnapshot` to update the snapshot.
+
+### Resources
+
+* [Airbnb JavaScript style guide](https://github.com/airbnb/javascript)
+* [ESLint](https://eslint.org/)
+* [Prettier](https://prettier.io/)
+* [Mocks](https://facebook.github.io/jest/docs/en/manual-mocks.html)
+* [What are pure functions?](https://medium.com/@jamesjefferyuk/javascript-what-are-pure-functions-4d4d5392d49c)
