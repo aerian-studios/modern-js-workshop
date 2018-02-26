@@ -1,15 +1,16 @@
 import emojis from "./lib/emoji.js";
-export function run() {
-    console.log(getEmoji("heart eyes cat"));
-}
 
-const isTheRightEmoji = (emoji, name) => {
-    return emoji.code === name;
-}
+const isTheRightEmoji = (emoji, name) => emoji.code === name;
 
 export function getEmoji(name) {
-    const emoji = emojis.find((item) => isTheRightEmoji(item, name));
-    if (emoji) {
-        return emoji.moji;
-    }
+  const emoji = emojis.find(item => isTheRightEmoji(item, name));
+  if (emoji) {
+    return emoji.moji;
+  }
+  return false;
+}
+
+export default function run() {
+  // eslint-disable-next-line no-console
+  console.log(getEmoji("heart eyes cat"));
 }

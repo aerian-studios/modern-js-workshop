@@ -3,9 +3,9 @@ module.exports = {
   plugins: ["jest"],
   env: {
     "jest/globals": true,
-    "browser": true,
+    browser: true
   },
   rules: {
-    "import/extensions": false,
+    "import/extensions": false
   }
 };
