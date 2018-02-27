@@ -1,60 +1,85 @@
 import "isomorphic-unfetch";
-import { insertEmoji, allYourBase } from "./lib/emojilib.js";
-import { defaultMessage, setDefaultHeading, setUpEmojitron, emojitronValues } from './week04.js';
+import {
+  defaultMessage,
+  setHeadingText,
+  setUpEmojitron,
+  emojitronValues,
+  labelText
+} from "./week04.js";
 
 jest.mock("isomorphic-unfetch");
 
-const formTemplate = `<form id=”emojitron” action=”#”><div class="input-wrap input-select">
-<label for="emoji-selector">Select you emoji base:</label>
-<select name="emoji-selector" id="emoji-selector">
-    <option value="sign_of_the_horns"></option>
-    <option value="guardsman"></option>
-    <option value="...">...</option>
-</select>
-</div></form>`;
+// eslint-disable-next-line no-unused-vars
+const formTemplate = `<form id="emojitron" action="#">
+    <div class="input-wrap input-select">
+        <label for="emoji-select">Select your favourite emoji</label>
+        <select id="emoji-select" class=""><option>Select an emoji</option>
+            <option value="🤘">🤘</option>
+            <option value="💂">💂</option>
+            <option value="😂">😂</option>
+            <option value="🖖">🖖</option>
+        </select>
+    </div>
+</form>`;
 
 afterEach(() => {
-    const form = document.getElementById('emojitron');
+  const form = document.getElementById("emojitron");
 
-    form && form.remove();
-
-    const h1 = document.getElementById('heading');
-
-    h1 && h1.textContent = '';
+  if (form) form.remove();
 });
 
-describe('Emojitron creates an emoji selector with sensible defaults', () => {
-    it("Has a default value in the heading", () => {
-        document.body.innerHTML = "<h1 id='heading'></h1>";
-        const h1 = document.getElementById('heading');
-    
-        setDefaultHeading(defaultMessage);
-    
-        expect(h1.textContent).toBe(defaultMessage);
-    });
-    
-    it("Has a form ith id 'emojitron'", async () => {
-        await setUpEmojitron();
-    
-        expect(document.forms.length).toBeGreaterThan(0);
-        expect(document.getElementById('emojitron')).toBeTruthy();
-        expect(document.getElementById('emojitron')).toBe(document.forms[0]);
-        
-    });
-    
-    it("Has a <select> element", async () => {
-        await setUpEmojitron();
-    
-        const selectEl = document.querySelector('select');
+describe("Emojitron creates an emoji selector with sensible defaults", () => {
+  it("Has a default value in the heading", () => {
+    document.body.innerHTML = "<h1 id='heading'></h1>";
+    const h1 = document.getElementById("heading");
 
-        expect(selectEl).toBeTruthy();
-    });
+    setHeadingText(defaultMessage);
 
-    it("The <select> element has multiple <option> elements", async () => {
-        await setUpEmojitron();
-    
-        const selectEl = document.querySelector('select');
+    expect(h1.textContent).toBe(defaultMessage);
+  });
 
-        expect(selectEl.options.length).toBeGreaterThanOrEqual(emojitronValues.length);
-    });
-})
+  it("Has a form ith id 'emojitron'", async () => {
+    await setUpEmojitron();
+
+    const emojitron = document.getElementById("emojitron");
+
+    expect(document.forms.length).toBeGreaterThan(0);
+    expect(emojitron).toBeTruthy();
+    expect(emojitron).toBe(document.forms[0]);
+  });
+
+  it("Has a <select> element", async () => {
+    await setUpEmojitron();
+
+    const selectEl = document.querySelector("select");
+
+    expect(selectEl).toBeTruthy();
+  });
+
+  it("The <select> element has multiple <option> elements", async () => {
+    await setUpEmojitron();
+
+    const selectEl = document.querySelector("select");
+
+    expect(selectEl.classList.contains("uninitialised")).toBeFalsy();
+    expect(selectEl.options.length).toBeGreaterThanOrEqual(
+      emojitronValues.length
+    );
+  });
+
+  it("The select has a proper label", async () => {
+    await setUpEmojitron();
+
+    // using all selector for demonstration puroses only
+    const label = document.querySelectorAll("label");
+
+    expect(label.length).toBeGreaterThan(0);
+    expect(label[0].hasAttribute("for")).toBeTruthy();
+    expect(label[0].getAttribute("for")).toEqual("emoji-select");
+    expect(label[0].textContent).toBe(labelText);
+  });
+
+  xit("Sets the heading when the user selects an emoji", async () => {
+    // we need enzyme for this
+  });
+});

@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>I 😻 JS</title>
-    <style type="text/css">
-        html,
-        body {
-          font-family: Helvetica, Verdana, sans-serif;
-          font-size: large;
-          text-align: center;
-        }
-        h1 {
-            font-size: 500%;
-        }
-        kbd {
-          border-radius: 4px;
-          color: #eee;
-          background-color: #333;
-          font-family: "Monaco", monospace;
-          font-size: medium;
-          padding: 4px;
-        }
-      </style>
-      <script type="module" src="index.js"></script>
-      <script nomodule>
-          console.log(`%c
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>I 😻 JS</title>
+  <style type="text/css">
+    html,
+    body {
+      font-family: Helvetica, Verdana, sans-serif;
+      font-size: large;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 500%;
+    }
+
+    kbd {
+      border-radius: 4px;
+      color: #eee;
+      background-color: #333;
+      font-family: "Monaco", monospace;
+      font-size: medium;
+      padding: 4px;
+    }
+
+    .input-wrap>* {
+      color: rgb(0, 124, 0);
+      margin-right: 1em;
+    }
+
+    select {
+      transition: box-shadow .5s ease-in 0s;
+    }
+
+    .focussed {
+      box-shadow: red 0 0 23px 3px;
+    }
+  </style>
+  <script type="module" src="index.js"></script>
+  <script nomodule>
+    console.log(`%c
           🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 
 
           Your browser doesn't support ES modules! 
@@ -34,15 +50,19 @@
           🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨
           
           `, "background: white; color: red; display: block;");
-        console.log("If you're using Firefox, open about:config and set dom.moduleScripts.enabled to true");
-        console.log("If you're using Chrome, Safari or Edge, make sure you're using the latest version.");
-        console.log("If you're using IE...WTF?");
+    console.log("If you're using Firefox, open about:config and set dom.moduleScripts.enabled to true");
+    console.log("If you're using Chrome, Safari or Edge, make sure you're using the latest version.");
+    console.log("If you're using IE...WTF?");
 
 
-      </script>
+  </script>
 </head>
+
 <body>
-    <h1 id='heading'></h1>
-    <p>Press <kbd>⌘⌥I</kbd> or <kbd>F12</kbd> to open Developer Tools.</p>
+  <h1 id='heading'></h1>
+  <p>Press
+    <kbd>⌘⌥I</kbd> or
+    <kbd>F12</kbd> to open Developer Tools.</p>
 </body>
+
 </html>
