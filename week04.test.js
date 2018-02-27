@@ -81,5 +81,6 @@ describe("Emojitron creates an emoji selector with sensible defaults", () => {
 
   xit("Sets the heading when the user selects an emoji", async () => {
     // we need enzyme for this
+    // but we can test the event functions themselves
   });
 });
