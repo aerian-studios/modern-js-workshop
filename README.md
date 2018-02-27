@@ -4,7 +4,7 @@
 
 * [Week 1](#week-1--hello-kitty-) Getting started. Modules. Functions. Array methods.
 * [Week 2](#week-02--a-game-of-fetch-) Variables. Destructuring assignment. Fetch. Async/await.
-* [Week 3](#week-03) Code quality. Linters. Formatters. Mocking. Snapshot tests. Debugging.
+* [Week 3](#week-03--standing-guard-) Code quality. Linters. Formatters. Mocking. Snapshot tests. Debugging.
 
 Let's get started!
 
