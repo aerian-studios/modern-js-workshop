@@ -20,13 +20,11 @@ export const setHeadingText = message => {
 const createEmojiOptionElements = async emojis => {
   const emojiDex = await Promise.all(emojis.map(getEmoji));
 
-  const emojiKV = emojiDex.reduce(
-    (prev, current) => `${prev}
-        <option value="${current}">${current}</option>`,
-    `<option>Select an emoji</option>`
-  );
+  const emojiOptions = emojiDex
+    .map(element => `<option value="${element}">${element}</option>`)
+    .join();
 
-  return emojiKV;
+  return `<option>Select an emoji</option>${emojiOptions}`;
 };
 
 export const createEmojiSelectEl = async () => {
