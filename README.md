@@ -4,7 +4,7 @@
 
 * [Week 1](#week-1--hello-kitty-) Getting started. Modules. Functions. Array methods.
 * [Week 2](#week-02--a-game-of-fetch-) Variables. Destructuring assignment. Fetch. Async/await.
-* [Week 3](#week-03) Code quality. Linters. Formatters. Mocking. Snapshot tests. Debugging.
+* [Week 3](#week-03--standing-guard-) Code quality. Linters. Formatters. Mocking. Snapshot tests. Debugging.
 
 Let's get started!
 
@@ -22,20 +22,20 @@ This week we got our environments set up, and talked about testing, modules, fun
 
 ### Modules and testing
 
-We started our local server with `npm run serve` and loaded our demo in the browser. We soon found our first error.
-`week01.js` is missing! We created it, and found our next error: `run` could not be found. We created our function called `run` in `week01.js`, but it still wasn't found until we exported it.
+We start our local server with `npm run serve` and load our demo in the browser at http://localhost:1337. We soon find our first error.
+`week01.js` is missing! Create it, and find the next error: `run` could not be found. We create our function called `run` in `week01.js`, but it still can't be found until we export it.
 
 ```javascript
 export function run() {}
 ```
 
-We then took a look at `index.html` and `index.js` to see what was happening. We discovered a new type of script tag:
+If we take a look at `index.html` and `index.js` to see what was happening we can see a new type of script tag:
 
 ```html
 <script type="module" src="index.js"></script>
 ```
 
-This is the new ES module syntax, [which is now supported in most browsers](https://caniuse.com/#feat=es6-module). We took a look at `index.js` tosee the syntax for `import`, and saw where we were calling `run`.
+This is the new ES module syntax, [which is now supported in most browsers](https://caniuse.com/#feat=es6-module). Take a look at `index.js` to see the syntax for `import`, and see where we are calling `run`.
 
 ```javascript
 import { run as week01 } from "./week01.js";
@@ -43,7 +43,9 @@ import { run as week01 } from "./week01.js";
 week01();
 ```
 
-Jumping back to `index.js`, we played with `console.log`, and tried logging a string. We saw that we could run the same code from the command line using node, by running `npm start`. We then started with Test-Driven Development. We ran `npm test` and saw that we had no tests yet, so we created `week01.test.js`. We talked about Matt's love of emojis, looked at the syntax for the Jest `it` function, and wrote a test for our first challenge:
+Next we can start Test-Driven Development!
+
+Run `npm test` and we can see that we have no tests yet, so create `week01.test.js`. Next we write a test for our first challenge.
 
 ```javascript
 import { getEmoji } from "./week01.js";
@@ -53,7 +55,7 @@ it("returns an emoji when passed name", () => {
 });
 ```
 
-We cheated and made our test pass by creating a `getEmoji()` function that returns "😻" every time. We then found that Matt had helpfully provided everyone with a big list of emojis in `lib/emojis.js`. We looked at the default export syntax and the different way we import it (no curly brackets).
+We can start by cheating and make our test pass by creating a `getEmoji()` function that returns "😻" every time. Luckily there's a big list of emojis in `lib/emojis.js` which we can use to find the real emoji. We can use the default export syntax to import it (no curly brackets).
 
 ```javascript
 import emojis from "./lib/emoji.js";
@@ -61,7 +63,7 @@ import emojis from "./lib/emoji.js";
 
 ### Arrays and Objects
 
-We used `console.log` to explore the big array of emojis. We looked at `for...in` and `for...of` loops. We looked at why we used `const` to declare the variable. We then created our first proper passing version of getEmoji, using `for...of`:
+We can use `console.log` to explore the big array of emojis. We looked at `for...in` and `for...of` loops. We looked at why we used `const` to declare the variable. We then created our first proper passing version of getEmoji, using `for...of`:
 
 ```javascript
 export function getEmoji(name) {
@@ -126,12 +128,12 @@ export function getEmoji(name) {
 
 ### Variables: `let` vs `const`
 
-After reviewing last week, we started by looking at the difference between `let` and `const`. We use `let` if we want to change the value, and `const` if we won't. We explored this by trying to increment the value of a `const` and saw that it caused an error.
-We created an empty array using the `[]` syntax and an empty object using `{}`, and saw that even with `const`, we were able to change the contents of the array or object.
+We use `let` if we want to change the value, and `const` if we won't. We can explore this by trying to increment the value of a `const` and see that it causes an error.
+We create an empty array using the `[]` syntax and an empty object using `{}`, and see that even with `const`, we are able to change the contents of the array or object.
 
 ### Shorthand object syntax
 
-We saw that the common case of creating an object and assigning keys using variables of the same name can be done in a shorthand way.
+The common case of creating an object and assigning keys using variables of the same name can be done in a shorthand way.
 
 ```javascript
 const foo = 1;
@@ -181,7 +183,7 @@ console.log(...restArr); // [5, 7, 9]
 
 ### Exercise: find the dog
 
-Sadly Ben wasn't with us, but we knew he wanted to find the dog emoji, so we copied our tests from last week and changed the cat with heart eyes to the dog.
+Some people prefer dogs to heart-eyed cats, so we try to find the dog emoji. If we copy our tests from last week we can change the cat with heart eyes to the dog.
 
 ```javascript
 it("returns a dog emoji when passed 'dog'", () => {
@@ -192,18 +194,18 @@ it("returns a dog emoji when passed 'dog'", () => {
 
 ### fetch, async and await
 
-Unfortunately our list of emojis didn't include the dog, so we had to look for a better source. The Emojidex API fit the bill. We decided to extract your emoji fetching into a new function. We introduced the `fetch` API, which is an easy way to perform HTTP requests, and is supported by all modern browsers.
+Unfortunately our list of emojis does't include the dog, so we have to look for a better source. The Emojidex API fits the bill. We can extract our emoji fetching into a new function. The `fetch` API is an easy way to perform HTTP requests, and is supported by all modern browsers.
 
 ![they made fetch happen](https://i.imgur.com/bnPIoWu.png)
 
-Unfortunately, fetch doesn't work in Node, so we installed a Polyfill: a small library that fills in holes in API support. We import it into our test file [using a different syntax](https://www.typescriptlang.org/docs/handbook/modules.html#import-a-module-for-side-effects-only):
+Unfortunately, fetch doesn't work in Node, but we can install a polyfill to fix this. A polyfill is a small library that fills in holes in API support. We import it into our test file [using a different syntax](https://www.typescriptlang.org/docs/handbook/modules.html#import-a-module-for-side-effects-only):
 
 `import "polymorphic-unfetch";`
 
 ...because we only need its side-effects (it adds a `fetch` method to the global space).
 
 Fetch has a nice simple syntax: `fetch("https://cdn.emojidex.com/static/utf_emoji.json")`
-We tried this, and found that instead of returning our data it returned a Promise. We talked about how a Promise was like a receipt given to you when you pay for your coffee. You take it to the counter and collect your coffee when it's ready. In ~~the olden days~~ 2015, this meant you had to use quite a complicated syntax, but luckily we're in 2018 and can use `async` and `await`. We talked about how if you put `async` before the function then you can just use await and write your code as if it was synchronous.
+When we try this we'll find that instead of returning our data it returns a Promise. A Promise is like a receipt given to you when you pay for your coffee. You take it to the counter and collect your coffee when it's ready. In ~~the olden days~~ 2015, this meant you had to use quite a complicated syntax, but luckily we're in 2018 and can use `async` and `await`. If you put `async` before the function then you can just use await and write your code as if it was synchronous.
 
 ```javascript
 export const fetchEmojis = async () => {
@@ -213,7 +215,7 @@ export const fetchEmojis = async () => {
 }
 ```
 
-We talked about how an async function returns a promise, but if you return a normal value it is magically wrapped in a promise for you. However there is no need to await a value if you're about to return it: it's fine to return the promise directly:
+An async function returns a promise, but if you return a normal value it is magically wrapped in a promise for you. However there is no need to await a value if you're about to return it: it's fine to return the promise directly:
 
 ```javascript
 export const fetchEmojis = async () => {
@@ -224,7 +226,7 @@ export const fetchEmojis = async () => {
 };
 ```
 
-We then refactored our `getEmoji` function from last week to be async, and get our emojis using fetch:
+We can then refactor our `getEmoji` function from last week to be async, and get our emojis using fetch:
 
 ```javascript
 export async function getEmoji(name) {
@@ -236,7 +238,7 @@ export async function getEmoji(name) {
 }
 ```
 
-We then saw that our test function also needed to now be async, but this was a simple change:
+Our test function also needs to now be async, but this is a simple change:
 
 ```javascript
 it("returns a dog emoji when passed 'dog'", async () => {
@@ -246,7 +248,7 @@ it("returns a dog emoji when passed 'dog'", async () => {
 
 ### Exercise: Everybody rocks
 
-For our next exercise we needed to find several emojis and combine them into a single string. We started with the test:
+For our next exercise we need to find several emojis and combine them into a single string. We start with the test:
 
 ```javascript
 it("returns all of the emojis with the given base", async () => {
@@ -254,7 +256,7 @@ it("returns all of the emojis with the given base", async () => {
 });
 ```
 
-By looking at our emoji data, we saw that we would need to find all emojis whose `base` property matched the one we were looking for. To do this, we introduce the array filter method. This is passed a predicate, like `find()` which we used last week, but instead of returning the first item it finds, it returns an array of all found items.
+By looking at our emoji data, we can see that we need to find all emojis whose `base` property matches the one we were looking for. To do this, we introduce the array filter method. This is passed a predicate, like `find()` which we used last week, but instead of returning the first item it finds it returns an array of matching items.
 
 ```javascript
 export const allYourBase = async base => {
@@ -264,7 +266,7 @@ export const allYourBase = async base => {
 };
 ```
 
-This found all of the emojis, but returned the whole objects, when we just want to emoji characters themselves. For this we introduced the array map function. Map is passed a function and returns a new array containing the result of calling the function on each item in the array. This allows us to extract the emoji character from the object.
+This found all of the emojis, but returned the whole objects, when we just want to emoji characters themselves. We can fix this with the Array.map method. Map is passed a function and returns a new array containing the result of calling the function on each item in the array. This allows us to extract the emoji character from the object.
 
 ```javascript
 export const allYourBase = async base => {
@@ -367,20 +369,99 @@ Ta-da!
 
 ## Week 03: 💂 Standing guard 💂
 
-This week is all about code quality and tooling. For this workshop we all installed [VS Code](https://code.visualstudio.com/), and looked at some of the tools we can use to help improve our code.
+This week is all about code quality and tooling. For this workshop we need to install [VS Code](https://code.visualstudio.com/), and we will look at some of the tools we can use to help improve our code.
 
 ### Coding standards
 
-Coding standards help ensure everyone is familiar with the codebase and reduce barriers to entry for new devs. They help prevent git conflicts from e.g. changing tabs/spaces, and reduce thinking time when looking at someone else's code.
+Coding standards help ensure everyone is familiar with the codebase and reduce barriers to entry for devs that are new to the project. They help prevent git conflicts from e.g. changing tabs/spaces, and reduce thinking time when looking at someone else's code.
 
 The biggest downside is that it can be extra work, and it can feel like you're being nagged. To demonstrate this, we installed [the ESLint extension for VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), by clicking the extensions tab in the sidebar and searching ESLint. Once installed, we can see that it complains about lots of things in our code. This can be annoying, but we can auto-fix lots of these problems. If we install [the Prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) we can look at how code formatters can make it even easier, especially if they are set to format on save. Open VS Code preferences and set `"editor.formatOnSave": true` and see it magically reformat all of our code. We can manually fix the remaining warnings, which is a much less daunting task. The remaining issues are mostly things unrelated to formatting, such as not consistently returning from a function, or using `let` instead of `const`.
 
 ### Side-effects and pure functions
 
-Side-effects are things outside our function that effect it or are effected by it. For example, calling an API is a side-effect, as is writing to the console. These can make it harder to test functions, as we could end up effectively testing someone else's code instead of our own. We don't want our tests to fail if the network goes down. We want our tests to have the same result every time we run them. FOr these reasons, it's best to keep the number of functions with side-effects to a minimum.
+Side-effects are things outside our function that effect it or are effected by it. For example, calling an API is a side-effect, as is writing to the console. These can make it harder to test functions, as we could end up effectively testing someone else's code instead of our own. We don't want our tests to fail if the network goes down. We want our tests to have the same result every time we run them. For these reasons, it's best to keep the number of functions with side-effects to a minimum.
 
-A function that always returns the same value when passed the same input, and doesn't change anything except via its return value is called a pure function. While it's best to make as many of our functions pure as is possible, if our code is all pure then it won't do anything. So, while we need side-effects if we're to actually do anything, it's best to keep these isolated so we can keep an eye on them.
+A function that always returns the same value when passed the same input, and doesn't change anything except via its return value is called a pure function. While it's best to make as many of our functions as possible as pure function, if our code is all pure then it won't do anything. So, while we need side-effects if we're to actually do anything, it's best to keep these isolated so we can keep an eye on them.
 
 ### Mocking
 
-It can be hard to test functions that have side-effects, which is why we use mocks. A mock replaces a function that has side effects with a dummy one that is pure. For our example, in our project we can replace `fetch` with a mock that returns a fixed JSON object.
+It can be hard to test functions that have side-effects, which is why we use mocks. A mock replaces a function that has side effects with a dummy one that is pure. For our example, in our project we can replace our `fetch` polyfill with a mock that returns a fixed JSON object. We put the mock into a directory called `__mocks__` next to our `node_modules` directory. We add `jest.mock("isomorphic-unfetch")`, which tells Jest to use our mock version instead of the real fetch polyfill.
+
+### Exercise: the changing of the guard
+
+We want to re-use our emoji functions from previous weeks, so rather than copying them or pulling them in from the previous weeks' files, we move them into a new `emojilib` library, which we move to the `lib` directory.
+
+One common side-effect that we need to deal with is adding or changing content on an HTML page. Our exercise this week is to write a function that adds our emojis into the `<h1>` in the page. We want to write our test first, but as we're not running in a browser our first attempt will fail.
+
+```html
+<!-- index.html -->
+<h1 id='heading'></h1>
+```
+
+```javascript
+// week03.test.js
+it("inserts our emoji into the header", async () => {
+  const emojis = await allYourBase("guardsman");
+  await insertEmoji(emojis);
+  expect(document.body.innerHTML).toEqual("<h1 id='heading'>💂🏻💂🏼💂🏽💂🏾💂🏿💂</h1>");
+});
+// TypeError: cannot set property innerHTML of null
+```
+
+Luckily, Jest comes bundled with [jsdom](https://github.com/jsdom/jsdom), which emulates the DOM in JavaScript. A small change allows our code to work. We update the test and implement `insertEmoji`
+
+```javascript
+// emojilib.js
+
+export const insertEmoji = emoji => {
+  const h1 = document.getElementById("heading");
+  h1.innerHTML = emoji;
+};
+```
+
+We'll test this by checking the resulting HTML.
+
+```javascript
+// week03.test.js
+it("inserts our emoji into the header", async () => {
+  document.body.innerHTML = "<h1 id='heading'></h1>";
+  const emojis = await allYourBase("guardsman");
+  await insertEmoji(emojis);
+  expect(document.body.innerHTML).toEqual("<h1 id='heading'>💂🏻💂🏼💂🏽💂🏾💂🏿💂</h1>");
+});
+// Expected value to equal: "<h1 id='heading'>💂🏻💂🏼💂🏽💂🏾💂🏿💂</h1>",
+// Received "<h1 id=\"heading\">💂🏻💂🏼💂🏽💂🏾💂🏿💂</h1>"
+```
+
+But wait..this still breaks. jsdom has changed the HTML to use double quotes. We could change our test so that the HTML exactly matches, but there is an easier way. Rather than trying to work out exactly what the HTML will be generated will look like, we can introduce snapshot tests.
+
+#### Snapshot tests
+
+A snapshot test checks that an output value does not change. The first time the test is run, the output is saved as a `.snap` file, which we check into git. If future updates change this output then the test will fail.
+
+```javascript
+it("inserts our emoji into the header", async () => {
+  document.body.innerHTML = "<h1 id='heading'></h1>";
+  const emojis = await allYourBase("guardsman");
+  insertEmoji(emojis);
+  expect(document.body.innerHTML).toMatchSnapshot();
+});
+```
+
+The syntax is very simple, and it handles all of the saving to disk automatically. We can see that a new `__snapshots__` directory is created with a new file `week03.test.js.snap`.
+
+```
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inserts our emoji into the header 1`] = `"<h1 id=\\"heading\\">💂🏻💂🏼💂🏽💂🏾💂🏿💂</h1>"`;
+```
+
+If we ever need to change the saved value, we can run `npx jest --updateSnapshot` to update the snapshot.
+
+### Resources
+
+* [Airbnb JavaScript style guide](https://github.com/airbnb/javascript)
+* [ESLint](https://eslint.org/)
+* [Prettier](https://prettier.io/)
+* [Mocks](https://facebook.github.io/jest/docs/en/manual-mocks.html)
+* [What are pure functions?](https://medium.com/@jamesjefferyuk/javascript-what-are-pure-functions-4d4d5392d49c)
