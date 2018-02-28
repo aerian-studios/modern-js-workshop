@@ -1,6 +1,6 @@
 import { getEmoji } from "./lib/emojilib.js";
 
-export const defaultMessage = "I don't know what I like";
+export const defaultMessage = "I don't know how I feel!";
 export const labelText = "Select your favourite emoji";
 export const emojitronValues = [
   "sign of the horns",
@@ -11,10 +11,6 @@ export const emojitronValues = [
 
 // Step 1
 export const setHeadingText = message => {
-  if (!document.getElementById("heading")) {
-    document.body.innerHTML = "<h1 id='heading'></h1>";
-  }
-
   const h1 = document.getElementById("heading");
 
   h1.textContent = message;
@@ -22,12 +18,7 @@ export const setHeadingText = message => {
 };
 
 const createEmojiOptionElements = async emojis => {
-  const emojiDex = await Promise.all(
-    emojis.map(async emoji => {
-      const theEmoji = await getEmoji(emoji);
-      return theEmoji;
-    })
-  );
+  const emojiDex = await Promise.all(emojis.map(getEmoji));
 
   const emojiKV = emojiDex.reduce(
     (prev, current) => `${prev}
@@ -85,7 +76,7 @@ const setupEmojitronEvents = function emojiTronEvents() {
 //   // innerHTML parses strings or will take an element
 //   emojitron.innerHTML = `<div class="uninitialised"></div>`;
 
-//     document.body.appendChild(emojitron);
+//     document.body.append(emojitron);
 // }
 // Step 4
 export const setUpEmojitron = async () => {
@@ -97,9 +88,9 @@ export const setUpEmojitron = async () => {
   emojitron.innerHTML = `<div class="uninitialised"></div>`;
 
   // DOM Selection
-  emojitron.children[0].classList.add("input-wrap", "input-select");
-  emojitron.querySelector("div").classList.remove("uninitialised");
-  const divWrapper = emojitron.querySelector(".input-select");
+  const divWrapper = emojitron.children[0];
+  divWrapper.classList.add("input-wrap", "input-select");
+  divWrapper.classList.remove("uninitialised");
 
   // Abstracted DOM creation
   const select = await createEmojiSelectEl();

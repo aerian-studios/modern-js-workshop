@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Emojitron creates an emoji selector with sensible defaults matches the snapshot 1`] = `
+"<h1 id=\\"heading\\"></h1><form id=\\"emojitron\\" name=\\"emojitron\\"><div class=\\"input-wrap input-select\\"><label for=\\"emoji-select\\">Select your favourite emoji</label><select id=\\"emoji-select\\"><option>Select an emoji</option>
+        <option value=\\"🤘\\">🤘</option>
+        <option value=\\"💂\\">💂</option>
+        <option value=\\"\\"></option>
+        <option value=\\"\\"></option></select></div></form>"
+`;

@@ -22,6 +22,10 @@ const formTemplate = `<form id="emojitron" action="#">
     </div>
 </form>`;
 
+beforeEach(() => {
+  document.body.innerHTML = "<h1 id='heading'></h1>";
+});
+
 afterEach(() => {
   const form = document.getElementById("emojitron");
 
@@ -30,7 +34,6 @@ afterEach(() => {
 
 describe("Emojitron creates an emoji selector with sensible defaults", () => {
   it("Has a default value in the heading", () => {
-    document.body.innerHTML = "<h1 id='heading'></h1>";
     const h1 = document.getElementById("heading");
 
     setHeadingText(defaultMessage);
@@ -56,17 +59,6 @@ describe("Emojitron creates an emoji selector with sensible defaults", () => {
     expect(selectEl).toBeTruthy();
   });
 
-  it("The <select> element has multiple <option> elements", async () => {
-    await setUpEmojitron();
-
-    const selectEl = document.querySelector("select");
-
-    expect(selectEl.classList.contains("uninitialised")).toBeFalsy();
-    expect(selectEl.options.length).toBeGreaterThanOrEqual(
-      emojitronValues.length
-    );
-  });
-
   it("The select has a proper label", async () => {
     await setUpEmojitron();
 
@@ -79,8 +71,32 @@ describe("Emojitron creates an emoji selector with sensible defaults", () => {
     expect(label[0].textContent).toBe(labelText);
   });
 
-  xit("Sets the heading when the user selects an emoji", async () => {
-    // we need enzyme for this
-    // but we can test the event functions themselves
+  it("The <select> element has multiple <option> elements", async () => {
+    await setUpEmojitron();
+
+    const selectEl = document.querySelector("select");
+
+    expect(selectEl.classList.contains("uninitialised")).toBeFalsy();
+    expect(selectEl.options.length).toBeGreaterThanOrEqual(
+      emojitronValues.length
+    );
+  });
+
+  it("Sets the heading when the user selects an emoji", async () => {
+    await setUpEmojitron();
+
+    const selectEl = document.querySelector("select");
+
+    selectEl.selectedIndex = 1;
+
+    const h1 = document.getElementById("heading");
+    selectEl.dispatchEvent(new Event("change"));
+
+    expect(h1.textContent).toEqual("🤘");
+  });
+
+  it("matches the snapshot", async () => {
+    await setUpEmojitron();
+    expect(document.body.innerHTML).toMatchSnapshot();
   });
 });
