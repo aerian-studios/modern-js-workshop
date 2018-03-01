@@ -9,6 +9,7 @@ import {
 
 jest.mock("isomorphic-unfetch");
 
+// This is here to show the markup we are looking for
 // eslint-disable-next-line no-unused-vars
 const formTemplate = `<form id="emojitron" action="#">
     <div class="input-wrap input-select">
@@ -22,28 +23,22 @@ const formTemplate = `<form id="emojitron" action="#">
     </div>
 </form>`;
 
+// Add this after the first test is done
 beforeEach(() => {
   document.body.innerHTML = "<h1 id='heading'></h1>";
 });
 
-afterEach(() => {
-  const form = document.getElementById("emojitron");
-
-  if (form) form.remove();
-  const h1 = document.getElementById("heading");
-
-  if (h1) {
-    h1.remove();
-  }
-});
-
 describe("Emojitron creates an emoji selector with sensible defaults", () => {
   it("Has a default value in the heading", () => {
+    // document.body.innerHTML = "<h1 id='heading'></h1>";// moves up into before each
     const h1 = document.getElementById("heading");
 
     setHeadingText(defaultMessage);
 
     expect(h1.textContent).toBe(defaultMessage);
+
+    // Show remove and then do the beforeEach above
+    h1.remove();
   });
 
   it("Has a form with id 'emojitron'", async () => {
