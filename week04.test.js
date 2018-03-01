@@ -30,6 +30,11 @@ afterEach(() => {
   const form = document.getElementById("emojitron");
 
   if (form) form.remove();
+  const h1 = document.getElementById("heading");
+
+  if (h1) {
+    h1.remove();
+  }
 });
 
 describe("Emojitron creates an emoji selector with sensible defaults", () => {
@@ -41,7 +46,7 @@ describe("Emojitron creates an emoji selector with sensible defaults", () => {
     expect(h1.textContent).toBe(defaultMessage);
   });
 
-  it("Has a form ith id 'emojitron'", async () => {
+  it("Has a form with id 'emojitron'", async () => {
     await setUpEmojitron();
 
     const emojitron = document.getElementById("emojitron");
@@ -56,6 +61,9 @@ describe("Emojitron creates an emoji selector with sensible defaults", () => {
 
     const selectEl = document.querySelector("select");
 
+    expect(
+      selectEl.parentElement.classList.contains("uninitialised")
+    ).toBeFalsy();
     expect(selectEl).toBeTruthy();
   });
 
@@ -76,7 +84,6 @@ describe("Emojitron creates an emoji selector with sensible defaults", () => {
 
     const selectEl = document.querySelector("select");
 
-    expect(selectEl.classList.contains("uninitialised")).toBeFalsy();
     expect(selectEl.options.length).toBeGreaterThanOrEqual(
       emojitronValues.length
     );
