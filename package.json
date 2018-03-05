@@ -6,21 +6,16 @@
   "scripts": {
     "test": "jest --watchAll",
     "serve": "static-server -p 1337 .",
-    "start": "node --experimental-modules --loader ./lib/loader.mjs node.js"
+    "start": "node --experimental-modules --loader ./lib/loader.mjs node.js",
+    "delete-everything-and-reset-yes-really":
+      "git reset --hard && git clean -dfx"
   },
   "jest": {
     "transform": {
       ".*": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   },
   "devDependencies": {
     "@types/jest": "^22.1.0",
