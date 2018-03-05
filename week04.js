@@ -1,7 +1,7 @@
 import { getEmoji } from "./lib/emojilib.js";
 
 export const defaultHeading = "I don't know how I feel!";
-export const labelText = "Select your FAVOURITE emoji";
+export const labelText = "Select your favourite emoji";
 export const emojitronValues = [
   "sign of the horns",
   "guardsman",
