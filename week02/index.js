@@ -1,4 +1,4 @@
-import { allYourBase } from "./lib/emojilib.js";
+import { allYourBase } from "../lib/emojilib.js";
 
 export default async function run() {
   // eslint-disable-next-line no-console

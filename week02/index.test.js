@@ -1,5 +1,5 @@
 import "isomorphic-unfetch";
-import { getEmoji, allYourBase } from "./lib/emojilib.js";
+import { getEmoji, allYourBase } from "../lib/emojilib.js";
 
 it("returns a dog emoji when passed 'dog'", async () => {
   expect(await getEmoji("dog")).toEqual("🐶");

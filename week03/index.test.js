@@ -1,5 +1,5 @@
 import "isomorphic-unfetch";
-import { insertEmoji, allYourBase } from "./lib/emojilib.js";
+import { insertEmoji, allYourBase } from "../lib/emojilib.js";
 
 jest.mock("isomorphic-unfetch");
 

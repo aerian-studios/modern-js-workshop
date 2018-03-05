@@ -1,4 +1,4 @@
-import emojis from "./lib/emoji.js";
+import emojis from "../lib/emoji.js";
 
 const isTheRightEmoji = (emoji, name) => emoji.code === name;
 

@@ -6,7 +6,7 @@ import {
   setupEmojitron,
   labelText,
   emojitronValues
-} from "./week04";
+} from ".";
 
 describe("Emojitron creates an emoji selector with sensible defaults", () => {
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import { getEmoji } from "./lib/emojilib.js";
+import { getEmoji } from "../lib/emojilib.js";
 
 export const defaultHeading = "I don't know how I feel!";
 export const labelText = "Select your favourite emoji";
@@ -43,6 +43,7 @@ export const handleFocus = event => {
 };
 
 export const setupEmojitronEvents = selectEl => {
+  // eslint-disable-next-line no-param-reassign
   selectEl.onchange = () => {
     setHeadingText(selectEl.value);
     selectEl.blur();
