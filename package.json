@@ -8,7 +8,7 @@
     "serve": "static-server -p 1337 .",
     "start": "node --experimental-modules --loader ./lib/loader.mjs node.js",
     "delete-everything-and-reset-yes-really":
-      "git reset --hard && git clean -dfx"
+      "git reset --hard && git clean -dfx && npm install"
   },
   "jest": {
     "transform": {
@@ -27,7 +27,10 @@
     "jest": "^22.1.4",
     "static-server": "^3.0.0",
     "ts-jest": "^22.0.1",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.10",
+    "ts-loader": "^4.0.1"
   },
   "dependencies": {
     "isomorphic-unfetch": "^2.0.0"
