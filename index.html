@@ -40,22 +40,9 @@
       box-shadow: red 0 0 23px 3px;
     }
   </style>
+  <script src="https://cdn.polyfill.io/v2/polyfill.js?features=fetch,promise"></script>
   <script type="module" src="index.js"></script>
-  <script nomodule>
-    console.log(`%c
-          🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 
-
-          Your browser doesn't support ES modules! 
-
-          🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨
-          
-          `, "background: white; color: red; display: block;");
-    console.log("If you're using Firefox, open about:config and set dom.moduleScripts.enabled to true");
-    console.log("If you're using Chrome, Safari or Edge, make sure you're using the latest version.");
-    console.log("If you're using IE...WTF?");
-
-
-  </script>
+  <script nomodule src="dist/bundle.js" type="text/javascript"></script>
 </head>
 
 <body>
