@@ -33,10 +33,10 @@
     "jest": "^22.1.4",
     "static-server": "^3.0.0",
     "ts-jest": "^22.0.1",
+    "ts-loader": "^4.0.1",
     "typescript": "^2.6.2",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.10",
-    "ts-loader": "^4.0.1"
+    "webpack-cli": "^2.0.10"
   },
   "dependencies": {
     "isomorphic-unfetch": "^2.0.0"
