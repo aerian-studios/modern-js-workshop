@@ -1,3 +1,2 @@
 export const facesCategory = "😻,😿,😁,😃,😄,😉,😏,😓,😠,😡,😩,😪,😯,😱,😷";
-export const gesturesCategory = "🙋,🙌"
-;
+export const gesturesCategory = "🙋,🙌";
