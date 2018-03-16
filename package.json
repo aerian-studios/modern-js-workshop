@@ -1,44 +1,40 @@
 {
-  "name": "modern-js-workshop",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "test": "jest --watchAll",
-    "serve": "static-server -p 1337 .",
-    "start": "node --experimental-modules --loader ./lib/loader.mjs node.js",
-    "delete-everything-and-reset-yes-really": "git reset --hard && git clean -dfx && npm install"
-  },
-  "jest": {
-    "transform": {
-      ".*": "ts-jest"
+    "name": "modern-js-workshop",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "test": "jest --watchAll",
+        "serve": "static-server -p 1337 .",
+        "start":
+            "node --experimental-modules --loader ./lib/loader.mjs node.js",
+        "delete-everything-and-reset-yes-really":
+            "git reset --hard && git clean -dfx && npm install"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
-  "devDependencies": {
-    "@types/jest": "^22.1.0",
-    "eslint": "^4.18.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jest": "^21.12.2",
-    "jest": "^22.1.4",
-    "static-server": "^3.0.0",
-    "ts-jest": "^22.0.1",
-    "ts-loader": "^4.0.1",
-    "typescript": "^2.6.2",
-    "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.10"
-  },
-  "dependencies": {
-    "isomorphic-unfetch": "^2.0.0"
-  }
+    "jest": {
+        "transform": {
+            ".*": "ts-jest"
+        },
+        "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+        "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+        "testPathIgnorePatterns": ["node_modules", "dist", "coverage"]
+    },
+    "devDependencies": {
+        "@types/jest": "^22.1.0",
+        "eslint": "^4.18.1",
+        "eslint-config-airbnb-base": "^12.1.0",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-plugin-import": "^2.9.0",
+        "eslint-plugin-jest": "^21.12.2",
+        "jest": "^22.1.4",
+        "static-server": "^3.0.0",
+        "ts-jest": "^22.0.1",
+        "ts-loader": "^4.0.1",
+        "typescript": "^2.6.2",
+        "webpack": "^4.1.1",
+        "webpack-cli": "^2.0.10"
+    },
+    "dependencies": {
+        "isomorphic-unfetch": "^2.0.0"
+    }
 }
