@@ -6,8 +6,9 @@
     "scripts": {
         "test": "jest --watchAll",
         "serve": "static-server -p 1337 .",
-        "start":
-            "node --experimental-modules --loader ./lib/loader.mjs node.js",
+        "node": "node --experimental-modules --loader ./lib/loader.mjs node.js",
+        "webpack:dev": "webpack-cli --mode development",
+        "webpack:prod": "webpack-cli --mode production",
         "delete-everything-and-reset-yes-really":
             "git reset --hard && git clean -dfx && npm install"
     },
