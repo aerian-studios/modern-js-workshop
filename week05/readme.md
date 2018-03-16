@@ -128,3 +128,12 @@ export default function run() {
     console.log(getEmoji("heart eyes cat"));
 }
 ```
+
+### Resources
+
+*   [Webpack](https://webpack.js.org/)
+*   [TypeScript](https://www.typescriptlang.org/)
+*   [ts-loader: TypeScript loader for Webpack](https://github.com/TypeStrong/ts-loader)
+*   [TypeScript configuration file](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+*   [Babel](https://babeljs.io/)
+*   [Migrating to TypeScript from JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
