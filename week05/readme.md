@@ -133,6 +133,7 @@ export default function run() {
 
 *   [Webpack](https://webpack.js.org/)
 *   [TypeScript](https://www.typescriptlang.org/)
+*   [Polyfill.io](https://polyfill.io/v2/docs/)
 *   [ts-loader: TypeScript loader for Webpack](https://github.com/TypeStrong/ts-loader)
 *   [TypeScript configuration file](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 *   [Babel](https://babeljs.io/)
