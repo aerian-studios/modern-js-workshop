@@ -139,3 +139,7 @@ This has been a whistle-stop run-through of some popular jQuery functions and th
 | `$(".yell")[0].css("opacity", "0")`                 | `document.querySelector(".yell").style.opacity = 0;`                                                                     |
 | `$(".yell")[0].css({"Color":"red","Opacity": "1"})` | `document.querySelector(".yell").style.cssText= "color: red; opacity: 1"`                                                |
 | `$(".yell")[0].animate()`                           | `document.querySelector(".yell").animate()`                                                                              |
+
+### Resources
+- [(Now more than ever you) might not need jQuery](https://css-tricks.com/now-ever-might-not-need-jquery/)
+- [MDN: Element API](https://developer.mozilla.org/en-US/docs/Web/API/Element)
