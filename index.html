@@ -15,7 +15,7 @@
     }
 
     h1 {
-      font-size: 500%;
+      font-size: 100%;
     }
 
     kbd {
@@ -39,6 +39,27 @@
     .focussed {
       box-shadow: red 0 0 23px 3px;
     }
+
+    #keyboard select {
+      font-size: 100%;
+      margin: 1em;
+      padding: 0.5em 1em 0.5em 0.5em;
+    }
+
+    #keyboard div {
+      display: grid;
+      grid-gap: 0.5em;
+      grid-template-columns: repeat(10, 4em);
+      max-width: 45em;
+      margin: auto;
+      border: none;
+      min-width: 0;
+    }
+
+    #keyboard button {
+      font-size: 150%;
+      height: 2.5em;
+    }
   </style>
   <script src="https://cdn.polyfill.io/v2/polyfill.js?features=fetch,promise"></script>
   <script type="module" src="index.js"></script>
@@ -47,6 +68,29 @@
 
 <body>
   <h1 id='heading'></h1>
+  <form id='keyboard'>
+    <select id='cat'>
+      <option>Choose a category</option>
+    </select>
+    <div>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+      <button>😻</button>
+    </div>
+  </form>
+
+
   <p>Press
     <kbd>⌘⌥I</kbd> or
     <kbd>F12</kbd> to open Developer Tools.</p>
