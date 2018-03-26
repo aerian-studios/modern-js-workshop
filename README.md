@@ -22,3 +22,5 @@ http://localhost:1337.
     Memoisation.
 *   [Week 5](./week05): Using modern JS in old environments. Bundlers.
     Transpilers. Polyfills.
+*   [Week 6](./week06): Introduction to functional programming.
+*   [Week 7](./week07): Using FP in the real world
