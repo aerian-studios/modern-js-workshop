@@ -10,11 +10,9 @@ export const appendToTitle = (text) => {
     document.getElementById("heading").textContent += text;
 };
 
-export const makeClickHandler = (character) => {
-    return () => {
-        appendToTitle(character);
-        return false;
-    };
+export const makeClickHandler = (character) => () => {
+    appendToTitle(character);
+    return false;
 };
 
 export const makeButton = (moji) => {
