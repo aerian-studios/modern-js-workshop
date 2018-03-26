@@ -1,4 +1,4 @@
-## Week 7: :cigarette: ceci n'est pas une pipe :toilet:
+## Week 7: :smoking: ceci n'est pas une pipe :toilet:
 
 In this session we put into practice some of the funcitonal programming
 principles from the previous session, and see how we can use them to write,
