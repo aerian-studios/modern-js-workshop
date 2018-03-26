@@ -40,7 +40,7 @@ Glad you asked, we need a `calculateBaseFromSquare` and a `calculateCube` to cov
 ```javascript
 // Sorry for this silly function, it's just for illustration
 export const calculateBaseFromSquare = (squaredNo) => Math.sqrt(squaredNo);
-export const calculateCube = (number) => number * number * number;
+export const calculateCube = (number) => number ** 3; // ** syntax is in the latest version of javascript
 
 const three = caculateBaseFromSquare(9);
 const twentySeven = calculateCube(three);
