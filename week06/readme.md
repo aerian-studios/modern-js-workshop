@@ -79,3 +79,7 @@ Finally, something odd, you kind of have to read that backwards, or from the ins
 So this hole goes deeper... :hole:
 
 When you return a function from another function, things get really spanky.
+
+To have a look at this let us finally leave my horribly contrived example alone and look at the aim for this week; we want to get some emoji by their 'category' and add them to the heading.
+
+Let's start with the function as we might write it first time around:
