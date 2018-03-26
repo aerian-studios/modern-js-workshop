@@ -10,9 +10,9 @@ export const appendToTitle = (text) => {
     document.getElementById("heading").textContent += text;
 };
 
-export const makeClickHandler = (littlePictureOfSomethingji) => {
+export const makeClickHandler = (character) => {
     return () => {
-        appendToTitle(littlePictureOfSomethingji);
+        appendToTitle(character);
         return false;
     };
 };
@@ -26,10 +26,7 @@ export const makeButton = (moji) => {
 
 export const makeButtons = (mojis) => mojis.map(makeButton);
 
-export const makeKeysFromEmojiListByCategory = (category) =>
-    pipe(makeExtractFunctionByCategory(category), extractMojis, makeButtons);
-
-export const updateKeyboard = (keys) => {
+export const setKeys = (keys) => {
     const div = document.querySelector("form div");
     div.innerHTML = "";
     keys.forEach((key) => div.appendChild(key));
@@ -38,9 +35,14 @@ export const updateKeyboard = (keys) => {
 export const createKeyboard = (emojis) => {
     const form = document.getElementById("keyboard");
     form.innerHTML = "<div />";
-    const makeKeysFromEmojiList = makeKeysFromEmojiListByCategory("faces");
+    const category = "faces";
+    const makeKeysFromEmojiList = pipe(
+        makeExtractFunctionByCategory(category),
+        extractMojis,
+        makeButtons
+    );
     const buttons = makeKeysFromEmojiList(emojis);
-    updateKeyboard(buttons);
+    setKeys(buttons);
 };
 
 export const run = () => {
