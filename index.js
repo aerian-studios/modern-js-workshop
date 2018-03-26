@@ -6,4 +6,3 @@
 import week07 from "./week07/index.js";
 
 week07();
-// week06();
