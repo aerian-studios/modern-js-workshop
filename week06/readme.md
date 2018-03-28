@@ -1,7 +1,10 @@
-## Week 6: :pie: Functional progamming is easy as :pie:
+## Week 6: :cake: Functional progamming is easy as :cake:
 
 This week we're going to learn and implement "Functonal Programming" in 3 easy
-slices.
+slices. Before we start, it is worth remembering that coding is a process and
+that process is seldom complete. The level of completeness should be dictated by
+the requirements of the project/situation. Equally, the process of refactoring
+code towards Functional Perfection follows the same rules.
 
 ### What the heck is functional programming?
 
@@ -26,8 +29,8 @@ passed the area of a square and you need to calculate the volume of a cube with
 that square.
 
 If we break that down: _area_ is calculated by `sideLength * sideLength` or
-<code>sideLength<sup>2</sup></code> and _volume_ is ``sideLength _ sideLength _
-sideLength` or <code>sideLength<sup>3</sup></code>.
+<code>sideLength<sup>2</sup></code> and _volume_ is
+`sideLength _ sideLength _ sideLength` or <code>sideLength<sup>3</sup></code>.
 
 A first attempt might looks something like this:
 
@@ -41,14 +44,13 @@ export const calculateCubeFromSquare = (squaredNo) => {
 const twentySeven = calculateCubeFromSquare(9);
 ```
 
-Guess what? You've just written a _pure_ function (no side effects) **and** it
-always returns the same thing given the same input - the first 2 points from our
-requirements (the 3rd is (just) best practice). BOOM! walk away... Walking away
-is the correct thing to do; there is no need to optimise until you have good
-reason.
+Guess what? That's a _pure_ function (no side effects) **and** it always returns
+the same thing given the same input - the first 2 points from our requirements.
+BOOM! walk away... Walking away is the correct thing to do; there is no need to
+optimise until you have good reason.
 
-It is worth noting 2 things about the code above (apart from the fact that it is
-awesome FP goodness and you didn't even have to try):
+As a matter of interest, it is worth noting 2 things about the code above (apart
+from the fact that it is awesome FP goodness and you didn't even have to try):
 
 1.  Because it does follow our two main principles of FP, we **can** say things
     like `const twentySeven = calculateCubeFromSquare(9);` or
@@ -60,15 +62,15 @@ awesome FP goodness and you didn't even have to try):
     thinking about it so hard and reduce our cognitive load and we can test this
     function really easily to make sure we're can stop thinking about it.
 2.  If we really want to be picky about it, that function is really doing 2
-    things... calculating a base number from a squared number and then
-    calculating a cubed number... just saying.
+    things (it doesn't have the 3rd sponge)... it calculates a base number from
+    a squared number and then calculates a cubed number... just saying.
 
 Okay, let's say for the sake of practice that you **had a good reason to
 refactor** according to the best practice of "single purpose", what would that
 look like?
 
-Glad you asked, we need a `calculateBaseFromSquare` and a `calculateCube` to
-cover those 2 parts of the function:
+Glad you asked, we need a function to do each of the parts of that single
+function: a `calculateBaseFromSquare` and a `calculateCube`.
 
 ```javascript
 // Sorry for this silly function, it's just for illustration
@@ -79,11 +81,11 @@ const three = caculateBaseFromSquare(9);
 const twentySeven = calculateCube(three);
 ```
 
-Okay done, now walk away... No really. Walk. Away. Now we've got a more generic
-function that allows us to calculate cubes against any number and we can now
-also calculate base numbers should we need to... Your application just got more
-extensible, more testable and more reusable, and it is easy to read. What more
-do you want?
+Okay done, now take your hands off the keyboard and walk away. Now we've got a
+more generic function that allows us to calculate cubes against any number and
+we can now also calculate base numbers should we need to... Your application
+just got more extensible, more testable and more reusable, and it is easy to
+read. What more do you want?
 
 Well, I did say that you could treat these fancy pure functions as if they were
 the value they returned... `caculateBaseFromSquare(9)` always returns `3`. Every
