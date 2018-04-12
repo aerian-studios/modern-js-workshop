@@ -1,7 +1,10 @@
-## Week 6: :pie: Functional progamming is easy as :pie:
+## Week 6: :cake: Functional progamming is a piece of :cake:
 
 This week we're going to learn and implement "Functonal Programming" in 3 easy
-slices.
+slices. Before we start, it is worth remembering that coding is a process and
+that process is seldom complete. The level of completeness should be dictated by
+the requirements of the project/situation. Equally, the process of refactoring
+code towards Functional Perfection follows the same rules.
 
 ### What the heck is functional programming?
 
@@ -9,7 +12,7 @@ I know, you write functions all the time right? That's what functional
 programming is... but with a couple of requirements for the "shape" of the
 functions - I like to think of them as the 3 sponge layers of my coding cake:
 
-1.  :no_smoking: No side effects: - this is often called "Purity".
+1.  :facepunch: No side effects: - this is often called "Purity".
 2.  :gemini: Always returns the same thing given the same input - opaquely known
     as "referential transparency"
 3.  :one: Single purpose: - this is just good practice.
@@ -26,8 +29,8 @@ passed the area of a square and you need to calculate the volume of a cube with
 that square.
 
 If we break that down: _area_ is calculated by `sideLength * sideLength` or
-<code>sideLength<sup>2</sup></code> and _volume_ is ``sideLength _ sideLength _
-sideLength` or <code>sideLength<sup>3</sup></code>.
+<code>sideLength<sup>2</sup></code> and _volume_ is
+`sideLength _ sideLength _ sideLength` or <code>sideLength<sup>3</sup></code>.
 
 A first attempt might looks something like this:
 
@@ -41,14 +44,13 @@ export const calculateCubeFromSquare = (squaredNo) => {
 const twentySeven = calculateCubeFromSquare(9);
 ```
 
-Guess what? You've just written a _pure_ function (no side effects) **and** it
-always returns the same thing given the same input - the first 2 points from our
-requirements (the 3rd is (just) best practice). BOOM! walk away... Walking away
-is the correct thing to do; there is no need to optimise until you have good
-reason.
+Guess what? That's a _pure_ function (no side effects) **and** it always returns
+the same thing given the same input - the first 2 points from our requirements.
+BOOM! walk away... Walking away is the correct thing to do; there is no need to
+optimise until you have good reason.
 
-It is worth noting 2 things about the code above (apart from the fact that it is
-awesome FP goodness and you didn't even have to try):
+As a matter of interest, it is worth noting 2 things about the code above (apart
+from the fact that it is awesome FP goodness and you didn't even have to try):
 
 1.  Because it does follow our two main principles of FP, we **can** say things
     like `const twentySeven = calculateCubeFromSquare(9);` or
@@ -60,15 +62,15 @@ awesome FP goodness and you didn't even have to try):
     thinking about it so hard and reduce our cognitive load and we can test this
     function really easily to make sure we're can stop thinking about it.
 2.  If we really want to be picky about it, that function is really doing 2
-    things... calculating a base number from a squared number and then
-    calculating a cubed number... just saying.
+    things (it doesn't have the 3rd sponge)... it calculates a base number from
+    a squared number and then calculates a cubed number... just saying.
 
 Okay, let's say for the sake of practice that you **had a good reason to
 refactor** according to the best practice of "single purpose", what would that
 look like?
 
-Glad you asked, we need a `calculateBaseFromSquare` and a `calculateCube` to
-cover those 2 parts of the function:
+Glad you asked, we need a function to do each of the parts of that single
+function: a `calculateBaseFromSquare` and a `calculateCube`.
 
 ```javascript
 // Sorry for this silly function, it's just for illustration
@@ -79,13 +81,13 @@ const three = caculateBaseFromSquare(9);
 const twentySeven = calculateCube(three);
 ```
 
-Okay done, now walk away... No really. Walk. Away. Now we've got a more generic
-function that allows us to calculate cubes against any number and we can now
-also calculate base numbers should we need to... Your application just got more
-extensible, more testable and more reusable, and it is easy to read. What more
-do you want?
+Okay done, now take your hands off the keyboard and walk away; now we have a
+more generic function that allows us to calculate cubes against any number and
+we can now also calculate base numbers should we need to... Your application
+just got more extensible, more testable and more reusable, and it is easy to
+read. What more do you want?
 
-Well, I did say that you could treat these fancy pure functions as if they were
+Well, seeing as you asked. I did say that you could treat these fancy pure functions as if they were
 the value they returned... `caculateBaseFromSquare(9)` always returns `3`. Every
 time. So if you wanted to you could do this:
 
@@ -98,13 +100,15 @@ const twentySeven = calculateCube(caculateBaseFromSquare(9));
 
 Let me stress right now, you shouldn't do this if you don't feel comfortable
 with it. You could make the biggest difference to the extensibility, testability
-and reusability of your code by simply focussing on those 3 sponges above, but
+and reusability of your code by simply focussing on those 3 sponges above. 
+
+...Nevertheless, just for the sake of argument,
 if you want to follow the :rabbit: down this deep dark hole you've just
 discovered...
 
 ### Welcome to Higher Order Functions
 
-What now? Higher Order Functions, it's just a fancy way of saying that you can
+High what now? Higher Order Functions, it's just a fancy way of saying that you can
 pass a function as a parameter to another function, or that a function can
 return a function. This is just a feature of javascript, but combined with our 3
 sponges, we can start doing something very interesting.
@@ -116,18 +120,18 @@ Let's just look at that last line again without all the previous lines:
 const twentySeven = calculateCube(caculateBaseFromSquare(9));
 ```
 
-Notice that it is saying **What** is happening rather than **How** that number
+Notice that is that you have passed one function as the parameter of
+another. You've probably done this a lot without realising it using jQuery or
+eventListeners or timeouts. You've been using HOFs. Nice. This works because the
+inner function returns something that the outer function expects, the above
+wouldn't work if the inner function returned `undefined` or a date, etc.
+
+Something very cool about it is that it is saying **What** is happening rather than **How** that number
 is being converted? Without reading anything else I can see that it is saying it
 expects a squared number, that it will return the base number from that, and
 then it will calculate a cubed number. It isn't saying how any of that is done,
 and theoretically I never need know. So it is cutting out a whole lot of reading
 time and thinking time.
-
-Another thing to notice is that you have passed one function as the parameter of
-another. You've probably done this a lot without realising it using jQuery or
-eventListeners or timeouts. You've been using HOFs. Nice. This works because the
-inner function returns something that the outer function expects, the above
-wouldn't work if the inner function returned `undefined` or a date, etc.
 
 Finally, something odd, you kind of have to read that backwards, or from the
 inside out - `caculateBaseFromSquare` before `calculateCube`. This can take
@@ -168,7 +172,7 @@ export const run = () => {
 run();
 ```
 
-![Piece of cake](https://media.giphy.com/media/l0NhWraITDGe16FGg/giphy.gif)
+![Piece of cake](https://media.giphy.com/media/y53NWXQReeTII/giphy.gif)
 
 We've reused some code here as can be seen in the import statement, which is
 great. The function is nice and readable. But let's apply our sponge criteria to
@@ -230,7 +234,7 @@ const facesMojis = facesEmojis.map(extractMojis);
 const gestureMojis = gestureEmojis.map(extractMojis);
 ```
 
-That is neater! :cookie: We've reduced some repetition and made a more reusable
+That is neater! We've reduced some repetition and made a more reusable
 function. I'd be tempted to leave it there...
 
 ...But seeing as we're in a rabbit hole, let's look around a bit by using HOFs,
@@ -280,7 +284,7 @@ returns a new function that takes an `emojis` parameter that returns our
 predicate from above (i.e. true or false). :exploding_head: It's like functional
 inception.
 
-![Functional inception](https://media.giphy.com/media/3ohs88j0jPszpGCbYY/giphy.gif)
+![Functional MAGIC](https://media.giphy.com/media/QS0geEzR9KHBu/giphy.gif)
 
 It, `makeAFilterByCategory`, is a bit like a factory that makes new functions
 whose only job is to filter by the `category` that is passed in to it. You could
