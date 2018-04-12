@@ -5,23 +5,35 @@
     "license": "MIT",
     "scripts": {
         "test": "jest --watchAll",
-        "serve": "static-server -p 1337 .",
+        "serve": "webpack-dev-server --open",
         "node": "node --experimental-modules --loader ./lib/loader.mjs node.js",
-        "webpack:dev": "webpack-cli --mode development",
+        "webpack:dev": "webpack-cli --mode development --watch",
         "webpack:prod": "webpack-cli --mode production",
-        "delete-everything-and-reset-yes-really":
-            "git reset --hard && git clean -dfe coverage dist && npm install"
+        "delete-everything-and-reset-yes-really": "git reset --hard && git clean -dfe coverage dist && npm install"
     },
     "jest": {
         "transform": {
             ".*": "ts-jest"
         },
         "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-        "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-        "testPathIgnorePatterns": ["node_modules", "dist", "coverage"]
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx",
+            "json",
+            "node"
+        ],
+        "testPathIgnorePatterns": [
+            "node_modules",
+            "dist",
+            "coverage"
+        ]
     },
     "devDependencies": {
         "@types/jest": "^22.1.0",
+        "@types/react": "^16.3.9",
+        "@types/react-dom": "^16.0.5",
         "eslint": "^4.18.1",
         "eslint-config-airbnb-base": "^12.1.0",
         "eslint-config-prettier": "^2.9.0",
@@ -33,9 +45,12 @@
         "ts-loader": "^4.0.1",
         "typescript": "^2.6.2",
         "webpack": "^4.1.1",
-        "webpack-cli": "^2.0.10"
+        "webpack-cli": "^2.0.10",
+        "webpack-dev-server": "^3.1.3"
     },
     "dependencies": {
-        "isomorphic-unfetch": "^2.0.0"
+        "isomorphic-unfetch": "^2.0.0",
+        "react": "^16.3.1",
+        "react-dom": "^16.3.1"
     }
 }
