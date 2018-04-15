@@ -13,7 +13,7 @@ interface Props {}
 const DEFAULT_STATE: State = {
     output: "Hello aliens",
 };
-export class EmojiTypewriter extends React.Component<Props, State> {
+export class App extends React.Component<Props, State> {
     public state = DEFAULT_STATE;
 
     public addEmoji = (moji: string) => {

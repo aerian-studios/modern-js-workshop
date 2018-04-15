@@ -1,5 +1,5 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { EmojiTypewriter } from "./EmojiTypewriter";
+import { App } from "./App";
 
-ReactDOM.render(<EmojiTypewriter />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("app"));
