@@ -537,3 +537,7 @@ further, but for now I highly recommend reading these extra articles.
     of how JSX works, and how those custom tags are turned into function calls
     and rendered to the page.
     https://evilmartians.com/chronicles/optimizing-react-virtual-dom-explained
+*   [Create React App TypeScript](https://github.com/wmonk/create-react-app-typescript):
+    this is a really easy way to get up and running with a React app. Just takes
+    two commands to get a working boilerplated project, with all build
+    configurations set up.
