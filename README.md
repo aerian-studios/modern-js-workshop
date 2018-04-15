@@ -24,3 +24,5 @@ http://localhost:1337.
     Transpilers. Polyfills.
 *   [Week 6](./week06): Introduction to functional programming.
 *   [Week 7](./week07): Using FP in the real world
+*   [Week 8](./week08): Practical FP: improve your emoji keyboard.
+*   [Week 9](./week09): Introduction to React.
