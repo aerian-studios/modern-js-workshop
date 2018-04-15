@@ -1,3 +1,3 @@
 import * as React from "react";
 
-export const EmojiDisplay: React.SFC = (props) => <h1>{props.children}</h1>;
+export const EmojiDisplay: React.SFC = ({ children }) => <h1>{children}</h1>;
