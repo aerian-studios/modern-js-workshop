@@ -5,6 +5,8 @@ frontend library created by Facebook, which has become incredibly popular over
 the past few years, both on the web and via React Native for creating native
 mobile apps.
 
+## Getting set up
+
 On the web, React works by taking over a DOM element on the page, and rendering
 itself to it. We've already set up our environment with Webpack, so we can get
 started by adding our React `<div>` in index.html, and importing the compiled JS
@@ -71,6 +73,8 @@ We have scripts for these, so in separate terminals run `npm run webpack:dev`
 and `npm run serve`. This will launch the browser and hopefully we should see
 **Hello world** at the top. Congratulations: you've made your first React app!
 
+## Custom components
+
 That isn't very interesting though, as we're just rendering regular old HTML
 tags. Things get interesting when we move on to custom components. Let's get
 started. We're going to re-implement our emoji keyboard from last week as a
@@ -78,6 +82,8 @@ React component. We'll build four components: `EmojiKey`, which represents the
 individual keys, `EmojiKeyboard` which contains all of the keys, `EmojiDisplay`
 which shows the output, and `App`, which is the component which wraps
 everything.
+
+### Stateless functional components
 
 First, let's take our `<h1>` element and move it into a new `EmojiDisplay`
 component. A React component can effectively be one of two things: a class with
@@ -145,6 +151,8 @@ Reload your browser and you should see **Hello 👽**. The content of the tag is
 passed to our function as the children property, and then our function returns
 an h1 containing those children.
 
+## Testing React components
+
 We're happy with our `EmojiDisplay` component, so let's add a snapshot test to
 check that we don't break it in future. For this, we're introducing a new
 library `react-test-renderer`. This allows us to render the component inside our
@@ -182,6 +190,8 @@ Now if we accidentally make a change that alters the output of EmojiDisplay then
 our test will fail so we can check what's happened. This is unlikely to happen
 with a component this simple, but in more complex ones then this can be a
 lifesaver.
+
+## Class components
 
 We're now able to display emojis, but we want to be able to enter them. For that
 we need a keyboard component. We've reached the point where we should create a
@@ -293,6 +303,8 @@ ahead and create `EmojiKey.tsx` and `EmojiKey.test.tsx`.
 We'll leave out the snapshot test for now, as we only want a snapshot once we're
 happy with the output of the component.
 
+## Testing events
+
 First, let's think what we want our key to do. We will pass it the `Emoji`
 object that we want to display, and a callback function that it will use to add
 the emoji to the display when the button is pressed. We'll start by creating
@@ -326,6 +338,8 @@ it("calls the callback with the right moji when clicked", () => {
 We're using the test renderer as before, but this time instead of just checking
 the snapshot, we're simulating a click and checking that it's correctly calling
 the onAddEmoji function with the moji character that we used.
+
+## Typing props
 
 Now we have a failing test, let's create the component. We can use a stateless
 functional component again here, so let's get started. The props are a little
@@ -388,6 +402,8 @@ typing.
 We're returning an HTML button, which contains the `emoji.moji` character, and
 has an onClick property that calls the `onAddEmoji` function, passing in the
 moji character.
+
+## Introducing state
 
 We should have a passing test now. Let's go back to `App.tsx` and try it for
 real. First change the render method to include our key, using a single emoji to
@@ -526,7 +542,7 @@ Reload the browser and you should have a fully-functional emoji keyboard:
 congratulations on your first working React app! Next week we'll improve it
 further, but for now I highly recommend reading these extra articles.
 
-### Resources
+## Resources
 
 *   http://2ality.com/2018/04/type-notation-typescript.html This post by the
     JavaScript legend Axel Rauschmayer is an approachable but comprehensive
