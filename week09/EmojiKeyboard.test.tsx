@@ -8,5 +8,11 @@ it("renders correctly", () => {
         .create(<EmojiKeyboard emojis={emojilist} onAddEmoji={() => {}} />)
         .toJSON();
 
+    let treeChildrenLength = 0;
+    if (tree && tree.children) {
+        treeChildrenLength = tree.children.length;
+    }
+
     expect(tree).toMatchSnapshot();
+    expect(treeChildrenLength).toBe(emojilist.length);
 });
