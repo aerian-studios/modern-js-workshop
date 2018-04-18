@@ -25,7 +25,7 @@ it("renders correctly", () => {
         .toJSON();
 
     expect(tree).toMatchSnapshot();
-    expect(tree.children[0]).toBe(emoji.moji);
+    expect(tree && tree.children && tree.children[0]).toBe(emoji.moji);
 });
 
 it("calls the callback with the right moji when clicked", () => {
