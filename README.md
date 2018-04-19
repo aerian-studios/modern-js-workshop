@@ -12,7 +12,7 @@ To start the test runner, run `npm test` or install the Jest VS Code extension.
 To start the local web server, run `npm run serve` and open
 http://localhost:1337.
 
-To run the React examples, run `npm run webpack:dev` and `npm run serve`.
+To run the React examples, type `npm run serve`.
 
 ## Contents
 

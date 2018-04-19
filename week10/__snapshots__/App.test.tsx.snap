@@ -5,7 +5,7 @@ exports[`renders all the components we need 1`] = `
   className="typewriter"
 >
   <h1>
-    Hello aliens
+    Type your emoji
   </h1>
   <div
     id="keyboard"

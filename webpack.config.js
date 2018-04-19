@@ -20,12 +20,15 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
     },
     devtool: "inline-source-map",
-    devServer: {
+    serve: {
         contentBase: __dirname,
         compress: true,
         port: 5000,
         hot: true,
         inline: true,
+        dev: {
+            publicPath: "/dist/",
+        },
     },
     plugins: [
         new webpack.NamedModulesPlugin(),

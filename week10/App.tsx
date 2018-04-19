@@ -11,7 +11,7 @@ interface State {
 interface Props {}
 
 const DEFAULT_STATE: State = {
-    output: "Hello aliens",
+    output: "Type your emoji",
 };
 export class App extends React.Component<Props, State> {
     public state = DEFAULT_STATE;
@@ -24,7 +24,7 @@ export class App extends React.Component<Props, State> {
         this.setState({ output });
     };
 
-    render() {
+    public render() {
         return (
             <div className="typewriter">
                 <EmojiDisplay>{this.state.output}</EmojiDisplay>
