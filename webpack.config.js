@@ -19,12 +19,12 @@ module.exports = {
         filename: "bundle.js",
         path: path.resolve(__dirname, "dist"),
     },
+    mode: "development",
     devtool: "inline-source-map",
     serve: {
         contentBase: __dirname,
         compress: true,
-        port: 5000,
-        hot: true,
+        hot: {},
         inline: true,
         dev: {
             publicPath: "/dist/",
