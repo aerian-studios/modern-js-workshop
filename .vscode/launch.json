@@ -20,18 +20,6 @@
             "name": "Launch Chrome",
             "url": "http://localhost:1337",
             "webRoot": "${workspaceRoot}"
-        },
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome and source map",
-            "url": "http://localhost:1337",
-            "sourceMaps": true,
-            "webRoot": "${workspaceRoot}",
-            "trace": true,
-            "sourceMapPathOverrides": {
-                "webpack:///./*": "${workspaceRoot}/*"
-            }
         }
     ]
 }
