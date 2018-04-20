@@ -20,11 +20,14 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
     },
     mode: "development",
-    devtool: "inline-source-map",
+    devtool: "source-map",
     serve: {
         contentBase: __dirname,
         compress: true,
-        hot: {},
+        hot: {
+            port: 1338,
+        },
+        port: 1337,
         inline: true,
         dev: {
             publicPath: "/dist/",
