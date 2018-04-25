@@ -7,6 +7,40 @@ exports[`renders all the components we need 1`] = `
   <h1>
     Type your emoji
   </h1>
+  <select
+    onChange={[Function]}
+  >
+    <option
+      value="objects"
+    >
+      objects
+    </option>
+    <option
+      value="faces"
+    >
+      faces
+    </option>
+    <option
+      value="gestures"
+    >
+      gestures
+    </option>
+    <option
+      value="transportation"
+    >
+      transportation
+    </option>
+    <option
+      value="people"
+    >
+      people
+    </option>
+  </select>
+  <button
+    onClick={[Function]}
+  >
+    Clear
+  </button>
   <div
     id="keyboard"
   >
@@ -18,47 +52,7 @@ exports[`renders all the components we need 1`] = `
     <button
       onClick={[Function]}
     >
-      😻
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😿
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      🙋
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      🙌
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      🚁
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      🏃
-    </button>
-    <button
-      onClick={[Function]}
-    >
       🏷
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      👃
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      🗢
     </button>
     <button
       onClick={[Function]}
@@ -94,41 +88,6 @@ exports[`renders all the components we need 1`] = `
       onClick={[Function]}
     >
       👢
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      👦
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      👧
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      👶
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      👻
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      👼
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      👽
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      💀
     </button>
     <button
       onClick={[Function]}
@@ -273,71 +232,6 @@ exports[`renders all the components we need 1`] = `
     <button
       onClick={[Function]}
     >
-      😁
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😃
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😄
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😉
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😏
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😓
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😠
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😡
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😩
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😪
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😯
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😱
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      😷
-    </button>
-    <button
-      onClick={[Function]}
-    >
       🚪
     </button>
     <button
@@ -351,5 +245,8 @@ exports[`renders all the components we need 1`] = `
       ⌚️
     </button>
   </div>
+  <h1>
+    Type your emoji
+  </h1>
 </div>
 `;
