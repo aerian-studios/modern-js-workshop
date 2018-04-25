@@ -60,6 +60,15 @@
       font-size: 150%;
       height: 2.5em;
     }
+
+    #keyboard button:disabled {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: 1px solid #ccc;
+      opacity: 0.3;
+      background: #def;
+    }
   </style>
   <script src="https://cdn.polyfill.io/v2/polyfill.js?features=fetch,promise"></script>
   <script async defer src="dist/bundle.js" type="text/javascript"></script>
