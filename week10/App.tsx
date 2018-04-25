@@ -79,7 +79,6 @@ export class App extends React.Component<Props, State> {
                 <EmojiKeyboard
                     emojis={this.state.filteredEmojis}
                     onAddEmoji={this.addEmoji}
-                    output={this.state.output}
                 />
                 <EmojiDisplay>{this.state.output}</EmojiDisplay>
             </div>
