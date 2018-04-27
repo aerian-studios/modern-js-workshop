@@ -227,5 +227,207 @@ previous weeks and in this case `fetchEmojis` is an `async` function, which
 means that we need to `await` it. We can't adjust the built in lifecycle methods
 by making them asynchronous, but that is okay because we just make a new `async`
 function called `loadRemoteEmojis` and `await` the fetch resolution before we
-`setState`. React handles all the work of updating the display of all components
-that use the changed State when the State changes.
+`setState`. Notice that we don't adjust the state directly (we don't
+`state.emojiList = fetchedEmojis`), we call the `setState` function with the
+properties of the state we want to change and the new value. This allows React
+to keep track of when the State changes and then React handles all the work of
+updating the display of all components that use the changed State.
+
+You should see a working keyboard, even on low bandwidth, and then, when the
+more expressive keyboard will update when the API response is returned.
+
+### Scratch that - adding a 'clear' button
+
+We need to add a button that resets the display, but not the keyboard when
+clicked. Luckily we have already created a `DEFAULT_STATE` const that we can
+use, so all we need to do is `setState` using the property from there and React
+will handle the rest because `EmojiDisplay` uses the local State for its value.
+
+```javascript
+import * as React from "react";
+import { EmojiDisplay } from "./EmojiDisplay";
+
+import emojilist from "../lib/emoji";
+import { fetchEmojis } from "../lib/emojilib";
+import { Emoji } from "./Emoji";
+import { EmojiKeyboard } from "./EmojiKeyboard";
+
+interface State {
+    output: string;
+    emojilist: Emoji[];
+}
+
+interface Props {}
+
+const DEFAULT_STATE: State = {
+    output: "Type your emoji",
+    emojilist,
+};
+
+export class App extends React.Component<Props, State> {
+    public readonly state = DEFAULT_STATE;
+
+    public componentDidMount() {
+        this.loadRemoteEmojis();
+    }
+
+    public loadRemoteEmojis = async () => {
+        const emojis = await fetchEmojis();
+        this.setState(
+            { emojilist: emojis }
+        );
+    };
+
+    // Method uses an arrow function to keep scope and setState for state.output
+    public clear = () => this.setState({ output: DEFAULT_STATE.output });
+
+    public addEmoji = (moji: string) => {
+        let output = moji;
+        if (this.state.output !== DEFAULT_STATE.output) {
+            output = this.state.output + moji;
+        }
+        this.setState({ output });
+    };
+
+    public render() {
+        return (
+            <div className="typewriter">
+                <EmojiDisplay>{this.state.output}</EmojiDisplay>
+                {// Add a button with a click listener}
+                <button onClick={this.clear}>Clear</button>
+                <EmojiKeyboard
+                    emojis={this.state.emojiList}
+                    onAddEmoji={this.addEmoji}
+                />
+            </div>
+        );
+    }
+}
+```
+
+First we add a normal `<button>` with an `onClick` _Prop_ which is set to call
+our `clear` method.
+
+Then we create a `clear` method, which just sets the `state.output`. Done.
+
+There is one subtle thing that you might have missed about our `clear` method;
+we are setting it to be an arrow function (`clear = () => {}`) rather than a
+normal class method (`clear() {}`). Without going too deeply into discussion
+about scope and the value of `this`, we use the arrow function for its
+reasonableness of `scope`. Arrow functions always keep the scope of the object
+they are in, which means that when we call them from outside they will still
+have access to the variables in the original scope container - in this case it
+means we can call `this.setState()` and know that the `this` we are referring to
+is the `App` class rather than `window`, which is the normal scope of mouse
+events. This is a complex subject that is made much simpler by arrow functions -
+as a general rule, if you get a js error `cannot call setState of undefined`,
+you need to add an arrow function :).
+
+### Categories FTW
+
+Next we want to make a `<select>` element of categories that filters the emojis
+sent to the keyboard. For this we need a list of categories, for which we can
+use our existing functions and we need to modify our State definitions to have a
+record of our `filteredEmojis`, our `categories` and the `selectedCategory`.
+We'll also need to adjust keyboard to use the filtered list.
+
+```javascript
+import * as React from "react";
+import { EmojiDisplay } from "./EmojiDisplay";
+
+import emojilist from "../lib/emoji";
+import {
+    fetchEmojis,
+    getCategories,
+    makeAFilterByCategory,
+} from "../lib/emojilib";
+import { CategorySelector } from "./CategorySelector";
+import { Emoji } from "./Emoji";
+import { EmojiKeyboard } from "./EmojiKeyboard";
+interface State {
+    output: string;
+    emojilist: Emoji[];
+    categories: string[];
+    filteredEmojis: Emoji[];
+    selectedCategory: string;
+}
+
+interface Props {}
+
+// Start with the categories available in our local list
+const DEFAULT_CATEGORIES = getCategories(emojilist);
+const DEFAULT_CATEGORY = DEFAULT_CATEGORIES[0];
+
+const DEFAULT_STATE: State = {
+    output: "Type your emoji",
+    // Modify state definition - comments below can be read from the type definitions above
+    categories: DEFAULT_CATEGORIES,// Array of categories
+    selectedCategory: DEFAULT_CATEGORY,// String  of selected category name
+    filteredEmojis: emojilist.filter(makeAFilterByCategory(DEFAULT_CATEGORY)),// Array of emojis that have been filtered - see weeks 06-08
+    emojilist,
+};
+
+export class App extends React.Component<Props, State> {
+    public readonly state = DEFAULT_STATE;
+
+    public componentDidMount() {
+        this.loadRemoteEmojis();
+    }
+
+    public loadRemoteEmojis = async () => {
+        const emojis = await fetchEmojis();
+        this.setState(
+            { emojilist: emojis, categories: getCategories(emojis) },
+            // setState can take a callback that is called once the state is set
+            () => this.updateCategory(this.state.categories[0])
+        );
+    };
+
+    public clear = () => this.setState({ output: DEFAULT_STATE.output });
+    public addEmoji = (moji: string) => {
+        let output = moji;
+        if (this.state.output !== DEFAULT_STATE.output) {
+            output = this.state.output + moji;
+        }
+        this.setState({ output });
+    };
+
+    public updateCategory = (selectedCategory: string) => {
+        this.setState({
+            selectedCategory,
+            filteredEmojis: this.state.emojilist.filter(
+                makeAFilterByCategory(selectedCategory)
+            ),
+        });
+    };
+
+    public onCategoryChange = (event: React.FormEvent<HTMLSelectElement>) =>
+        this.updateCategory(event.currentTarget.value);
+
+    public render() {
+        return (
+            <div className="typewriter">
+                <EmojiDisplay>{this.state.output}</EmojiDisplay>
+                <CategorySelector
+                    categories={this.state.categories}
+                    onChange={this.onCategoryChange}
+                />
+                <button onClick={this.clear}>Clear</button>
+                <EmojiKeyboard
+                    emojis={this.state.filteredEmojis}
+                    onAddEmoji={this.addEmoji}
+                />
+                <EmojiDisplay>{this.state.output}</EmojiDisplay>
+            </div>
+        );
+    }
+}
+```
+
+In a sense, there is no need to look at the `<CategorySelector>` component,
+because we can see the shape and functionality of it from here; it takes the
+`state.categories` list and it calls `onCategoryChange` when it is changed. The
+other thing that has changed is that
+`<EmojiKeyboard emojis={this.state.filteredEmojis} ... />` takes
+`state.filteredEmojis` instead of the whole list, so it will now update when the
+`filteredEmojis` changes...
