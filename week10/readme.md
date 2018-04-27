@@ -121,14 +121,111 @@ export class App extends React.Component<Props, State> {
 }
 ```
 
-Let's look at that a little more closely. Our `<App />` has _State_ with a single, `output` property. The `<EmojiDisplay />` component takes this as a _Prop_, as it's _children_ (i.e. contents). The only way that the State is modified is through the `addEmoji` function, but you can see that the class itself never uses it. Instead it passes the means to change its _State_ to the `EmojiKeyboard` along with a list of emojis. If `EmojiKeyboard` or one of its children (we don't really need to know) uses that function, it will change the _State_ in `App`, which will then cause React to call the `render` lifecycle method on `App` (because _State_ has changed) and on `EmojiDisplay` (because _Props_ have changed).
+Let's look at that a little more closely. Our `<App />` has _State_ with a
+single, `output` property. The `<EmojiDisplay />` component takes this as a
+_Prop_, as it's _children_ (i.e. contents). The only way that the State is
+modified is through the `addEmoji` function, but you can see that the class
+itself never uses it. Instead it passes the means to change its _State_ to the
+`EmojiKeyboard` along with a list of emojis. If `EmojiKeyboard` or one of its
+children (we don't really need to know) uses that function, it will change the
+_State_ in `App`, which will then cause React to call the `render` lifecycle
+method on `App` (because _State_ has changed) and on `EmojiDisplay` (because
+_Props_ have changed).
 
 ## This week
 
 This week we'll be using _State_, _Props_ and lifecyle methods to:
 
-1. Load the full emoji list from the API
-2. Add a button to clear the display
-3. Make a category filter for our `EmojiKeyboard`
+1.  Load the full emoji list from the API
+2.  Add a button to clear the display
+3.  Make a category filter for our `EmojiKeyboard`
 
-As we are focussing on getting used to React this week, we're cutting out demonstrations of how to test your components, but if you are interested, the tests are in the repo.
+As we are focussing on getting used to React this week, we're cutting out
+demonstrations of how to test your components, but if you are interested, the
+tests are in the repo.
+
+### Task 1 - load full emoji list
+
+Currently we are using our local list of emojis, which provides a fast load
+experience for our users, but maybe they'd like to be more expressive than that
+:shrug: so we'll need to get the full list once the component is already
+rendered (we don't want to interfere with our nice, fast load).
+
+As soon as we need to change something and cause the app to show the new
+value(s), we know that we need to use _State_ or _Props_.
+
+```javascript
+import * as React from "react";
+import { EmojiDisplay } from "./EmojiDisplay";
+
+import emojilist from "../lib/emoji";
+import { fetchEmojis } from "../lib/emojilib";
+import { Emoji } from "./Emoji";
+import { EmojiKeyboard } from "./EmojiKeyboard";
+
+interface State {
+    output: string;
+    // Add emojiList to our State type
+    emojilist: Emoji[];
+}
+
+interface Props {}
+
+const DEFAULT_STATE: State = {
+    output: "Type your emoji",
+    // And add it to our (default) State definition
+    emojilist,
+};
+
+export class App extends React.Component<Props, State> {
+    // NOTE: 'readonly' indicator to explicitly state the state can't be modified elsewhere
+    public readonly state = DEFAULT_STATE;
+
+    // Lifecycle method that is called once the component is 'mounted' or rendered
+    public componentDidMount() {
+        this.loadRemoteEmojis();
+    }
+
+    public loadRemoteEmojis = async () => {
+        const emojis = await fetchEmojis();
+        // Once we have our emojis, setState and React does the rest
+        this.setState(
+            { emojilist: emojis }
+        );
+    };
+
+    public addEmoji = (moji: string) => {
+        let output = moji;
+        if (this.state.output !== DEFAULT_STATE.output) {
+            output = this.state.output + moji;
+        }
+        this.setState({ output });
+    };
+
+    public render() {
+        return (
+            <div className="typewriter">
+                <EmojiDisplay>{this.state.output}</EmojiDisplay>
+                <EmojiKeyboard
+                    // Use the state to pass the emojis so that this will update when the state changes
+                    emojis={this.state.emojiList}
+                    onAddEmoji={this.addEmoji}
+                />
+            </div>
+        );
+    }
+}
+```
+
+We add the emojis as an `emojiList` property in the local State and update the
+`EmojiKeyboard` to use the State so that it will display with the default emojis
+and updates when the local State changes.
+
+To load the remote emojis only once the component is ready, we use the
+`ComponentDidMount` lifecycle method. We are re-using our functions from
+previous weeks and in this case `fetchEmojis` is an `async` function, which
+means that we need to `await` it. We can't adjust the built in lifecycle methods
+by making them asynchronous, but that is okay because we just make a new `async`
+function called `loadRemoteEmojis` and `await` the fetch resolution before we
+`setState`. React handles all the work of updating the display of all components
+that use the changed State when the State changes.
