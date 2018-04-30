@@ -30,6 +30,7 @@ it("removes an emoji from the end of the output when delete is pressed and ", ()
     const instance = app.getInstance();
 
     if (instance) {
+        instance.setState = jest.fn();
         instance.addEmoji("😻");
         instance.addEmoji("😻");
         instance.removeEndEmoji();
