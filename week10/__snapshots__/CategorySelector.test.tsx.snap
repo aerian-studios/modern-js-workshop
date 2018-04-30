@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`creates a category selector 1`] = `
+<select>
+  <option
+    value="objects"
+  >
+    Objects
+  </option>
+  <option
+    value="faces"
+  >
+    Faces
+  </option>
+  <option
+    value="people"
+  >
+    People
+  </option>
+</select>
+`;

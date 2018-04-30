@@ -13,27 +13,27 @@ exports[`renders all the components we need 1`] = `
     <option
       value="objects"
     >
-      objects
+      Objects
     </option>
     <option
       value="faces"
     >
-      faces
+      Faces
     </option>
     <option
       value="gestures"
     >
-      gestures
+      Gestures
     </option>
     <option
       value="transportation"
     >
-      transportation
+      Transportation
     </option>
     <option
       value="people"
     >
-      people
+      People
     </option>
   </select>
   <button

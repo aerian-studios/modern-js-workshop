@@ -9,31 +9,32 @@ exports[`renders all the components we need 1`] = `
   </h1>
   <select
     onChange={[Function]}
+    value="objects"
   >
     <option
       value="objects"
     >
-      objects
+      Objects
     </option>
     <option
       value="faces"
     >
-      faces
+      Faces
     </option>
     <option
       value="gestures"
     >
-      gestures
+      Gestures
     </option>
     <option
       value="transportation"
     >
-      transportation
+      Transportation
     </option>
     <option
       value="people"
     >
-      people
+      People
     </option>
   </select>
   <button
@@ -41,205 +42,255 @@ exports[`renders all the components we need 1`] = `
   >
     Clear
   </button>
+  <button
+    onClick={[Function]}
+  >
+    ⬅️ Delete
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Load more!
+  </button>
   <div
     id="keyboard"
   >
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🎿
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🏷
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       👑
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       👕
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       👖
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       👗
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       👛
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       👝
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       👢
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       💊
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       💍
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       💎
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       💴
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       💶
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       💷
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       💺
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📀
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📅
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📔
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📖
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📚
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📟
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📠
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📣
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📻
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       📼
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🔑
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🔒
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🔔
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🕳
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🖪
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🖫
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🖺
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🗈
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🗏
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🗐
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🗿
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🚪
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       🛀
     </button>
     <button
+      disabled={false}
       onClick={[Function]}
     >
       ⌚️
