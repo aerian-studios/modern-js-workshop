@@ -21,7 +21,9 @@ const onAddEmoji = jest.fn();
 
 it("renders correctly", () => {
     const tree = renderer
-        .create(<EmojiKey emoji={emoji} onAddEmoji={onAddEmoji} />)
+        .create(
+            <EmojiKey emoji={emoji} onAddEmoji={onAddEmoji} disabled={false} />
+        )
         .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -30,7 +32,9 @@ it("renders correctly", () => {
 
 it("calls the callback with the right moji when clicked", () => {
     const tree = renderer
-        .create(<EmojiKey emoji={emoji} onAddEmoji={onAddEmoji} />)
+        .create(
+            <EmojiKey emoji={emoji} onAddEmoji={onAddEmoji} disabled={false} />
+        )
         .toJSON();
     if (tree) {
         tree.props.onClick();

@@ -21,7 +21,13 @@ it("handles onChange", () => {
     const change = jest.fn();
 
     const tree = renderer
-        .create(<CategorySelector categories={categories} onChange={change} />)
+        .create(
+            <CategorySelector
+                categories={categories}
+                onChange={change}
+                value={categories[0]}
+            />
+        )
         .toJSON();
 
     if (tree) {
