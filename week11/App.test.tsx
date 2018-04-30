@@ -1,3 +1,4 @@
+import "isomorphic-unfetch";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as renderer from "react-test-renderer";
