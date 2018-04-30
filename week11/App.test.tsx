@@ -24,7 +24,21 @@ it("renders all the components we need", () => {
     expect(tree).toMatchSnapshot();
 });
 
-it("removes an emoji from the end of the output when delete is pressed", () => {
+it("removes an emoji from the end of the output when delete is pressed and ", () => {
+    const app = renderer.create(<App />);
+    const instance = app.getInstance();
+
+    if (instance) {
+        instance.addEmoji("😻");
+        instance.addEmoji("😻");
+        instance.removeEndEmoji();
+    }
+    expect(instance.setState).toHaveBeenCalledWith({
+        output: ["😻"],
+    });
+});
+
+it("returns output to default when all emoji are removed", () => {
     const app = renderer.create(<App />);
     const instance = app.getInstance();
 
@@ -34,15 +48,6 @@ it("removes an emoji from the end of the output when delete is pressed", () => {
         instance.removeEndEmoji();
     }
     expect(instance.setState).toHaveBeenCalledWith({
-        output: ["Default output"],
-    });
-
-    if (instance) {
-        instance.addEmoji("😻");
-        instance.addEmoji("😻");
-        instance.removeEndEmoji();
-    }
-    expect(instance.setState).toHaveBeenCalledWith({
-        output: ["😻"],
+        output: ["Type your emoji"],
     });
 });
