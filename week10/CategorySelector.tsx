@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ucfirst } from "../lib/emojilib";
 
 interface MyProps {
     categories: string[];
@@ -7,7 +8,7 @@ interface MyProps {
 const makeAnOption = (category: string) => {
     return (
         <option value={category} key={category}>
-            {category}
+            {ucfirst(category)}
         </option>
     );
 };
