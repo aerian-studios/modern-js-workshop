@@ -6,7 +6,7 @@
         "module":
             "es2015" /* Specify module code generation: 'none', commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
         "lib": [
-            "es2015",
+            "esnext",
             "dom"
         ] /* Specify library files to be included in the compilation:  */,
         "allowJs": true /* Allow javascript files to be compiled. */,
@@ -14,7 +14,7 @@
         "jsx":
             "react" /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */,
         // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
-        "sourceMap": true,                     /* Generates corresponding '.map' file. */
+        "sourceMap": true /* Generates corresponding '.map' file. */,
         // "outFile":      "./build/out.js" /* Concatenate and emit output to single file. */,
         // "outDir": "./dist" /* Redirect output structure to the directory. */,
         // "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
