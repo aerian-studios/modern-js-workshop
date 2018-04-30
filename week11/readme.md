@@ -291,3 +291,143 @@ export class App extends React.Component<Props, State> {
 *   Create a button that loads the remote emojiList if it isn't loaded
 *   If it is loaded, use the button as a toggle for the remote list or the local
     list
+
+We discussed keeping a toggled State as the means of switching the list, but
+then we realised that this could leave us with State out of sync if a developer
+unexpectedly decided to alter the toggle without other appropriate changes, so
+we decided to base the toggled state on the actual State that is responsible for
+the display. We realised that we'd need to store the remote emojilist somewhere
+and there was some consideration of putting it in State. I'm not certain that it
+needs to be there, so I have put it in a variable within scope, but not related
+to the Component itself.
+
+Because our actual keyboard display is filtered, it didn't make sense to base
+the toggle on that, so I created a `currentEmojilist` that acts as the piece of
+State that is operated upon for display and tested against for toggling. This
+gives us free keyboard updates as we toggle.
+
+```javascript
+import * as React from "react";
+import { EmojiDisplay } from "./EmojiDisplay";
+
+import emojilist from "../lib/emoji";
+import {
+    fetchEmojis,
+    getCategories,
+    makeAFilterByCategory,
+} from "../lib/emojilib";
+import { CategorySelector } from "./CategorySelector";
+import { Emoji } from "./Emoji";
+import { EmojiKeyboard } from "./EmojiKeyboard";
+interface State {
+    output: string[];
+    currentEmojilist: Emoji[];
+    categories: string[];
+    filteredEmojis: Emoji[];
+    selectedCategory: string;
+}
+
+interface Props {}
+
+const DEFAULT_CATEGORIES = getCategories(emojilist);
+const DEFAULT_CATEGORY = DEFAULT_CATEGORIES[0];
+
+let remoteEmojilist: Emoji[] = [];
+
+const DEFAULT_STATE: State = {
+    output: ["Type your emoji"],
+    categories: DEFAULT_CATEGORIES,
+    selectedCategory: DEFAULT_CATEGORY,
+    filteredEmojis: emojilist.filter(makeAFilterByCategory(DEFAULT_CATEGORY)),
+    currentEmojiList: emojilist,
+};
+
+export class App extends React.Component<Props, State> {
+    public readonly state = DEFAULT_STATE;
+
+    public toggleEmojilist = () => {
+        if (!remoteEmojilist.length) {
+            return this.loadRemoteEmojis();
+        }
+
+        const currentEmojilist =
+            this.state.currentEmojilist === emojilist
+                ? remoteEmojilist
+                : emojilist;
+        return this.setState(
+            {
+                currentEmojilist,
+                categories: getCategories(currentEmojilist),
+            },
+            () => this.updateCategory(this.state.selectedCategory)
+        );
+    };
+
+    public loadRemoteEmojis = async () => {
+        remoteEmojilist = await fetchEmojis();
+    };
+
+    public clear = () => this.setState({ output: DEFAULT_STATE.output });
+    public addEmoji = (moji: string) => {
+        let output = [moji];
+        if (this.state.output !== DEFAULT_STATE.output) {
+            output = [...this.state.output, moji];
+        }
+        this.setState({ output });
+    };
+
+    public removeEndEmoji = () => {
+        if (this.state.output.length > 1) {
+            return this.setState({
+                output: this.state.output.splice(
+                    0,
+                    this.state.output.length - 1
+                ),
+            });
+        }
+        return this.setState({ output: DEFAULT_STATE.output });
+    };
+
+    public updateCategory = (selectedCategory: string) => {
+        this.setState({
+            selectedCategory,
+            filteredEmojis: this.state.currentEmojilist.filter(
+                makeAFilterByCategory(selectedCategory)
+            ),
+        });
+    };
+
+    public changeCategory = () => this.updateCategory(this.state.categories[3]);
+
+    public onCategoryChange = (event: React.FormEvent<HTMLSelectElement>) =>
+        this.updateCategory(event.currentTarget.value);
+
+    public render() {
+        return (
+            <div className="typewriter">
+                <EmojiDisplay>{this.state.output}</EmojiDisplay>
+                <CategorySelector
+                    categories={this.state.categories}
+                    onChange={this.onCategoryChange}
+                    value={this.state.selectedCategory}
+                />
+                <button onClick={this.clear}>Clear</button>
+                <button onClick={this.removeEndEmoji}>⬅️ Delete</button>
+                <button onClick={this.toggleEmojilist}>
+                    {!remoteEmojilist.length
+                        ? "Load more!"
+                        : this.state.currentEmojilist === emojilist
+                            ? "use remote emojis"
+                            : "use local emojis"}
+                </button>
+                <EmojiKeyboard
+                    emojis={this.state.filteredEmojis}
+                    onAddEmoji={this.addEmoji}
+                    clickedKeys={this.state.output}
+                />
+                <EmojiDisplay>{this.state.output}</EmojiDisplay>
+            </div>
+        );
+    }
+}
+```

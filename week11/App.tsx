@@ -12,7 +12,7 @@ import { Emoji } from "./Emoji";
 import { EmojiKeyboard } from "./EmojiKeyboard";
 interface State {
     output: string[];
-    emojilist: Emoji[];
+    currentEmojilist: Emoji[];
     categories: string[];
     filteredEmojis: Emoji[];
     selectedCategory: string;
@@ -21,29 +21,41 @@ interface State {
 interface Props {}
 
 const DEFAULT_CATEGORIES = getCategories(emojilist);
-const DEFAULT_CATEGORY = DEFAULT_CATEGORIES[1];
+const DEFAULT_CATEGORY = DEFAULT_CATEGORIES[0];
+
+let remoteEmojilist: Emoji[] = [];
 
 const DEFAULT_STATE: State = {
     output: ["Type your emoji"],
     categories: DEFAULT_CATEGORIES,
     selectedCategory: DEFAULT_CATEGORY,
     filteredEmojis: emojilist.filter(makeAFilterByCategory(DEFAULT_CATEGORY)),
-    emojilist,
+    currentEmojiList: emojilist,
 };
 
 export class App extends React.Component<Props, State> {
     public readonly state = DEFAULT_STATE;
 
-    public componentDidMount() {
-        this.loadRemoteEmojis();
-    }
+    public toggleEmojilist = () => {
+        if (!remoteEmojilist.length) {
+            return this.loadRemoteEmojis();
+        }
+
+        const currentEmojilist =
+            this.state.currentEmojilist === emojilist
+                ? remoteEmojilist
+                : emojilist;
+        return this.setState(
+            {
+                currentEmojilist,
+                categories: getCategories(currentEmojilist),
+            },
+            () => this.updateCategory(this.state.selectedCategory)
+        );
+    };
 
     public loadRemoteEmojis = async () => {
-        const emojis = await fetchEmojis();
-        this.setState(
-            { emojilist: emojis, categories: getCategories(emojis) },
-            () => this.updateCategory(this.state.categories[0])
-        );
+        remoteEmojilist = await fetchEmojis();
     };
 
     public clear = () => this.setState({ output: DEFAULT_STATE.output });
@@ -70,7 +82,7 @@ export class App extends React.Component<Props, State> {
     public updateCategory = (selectedCategory: string) => {
         this.setState({
             selectedCategory,
-            filteredEmojis: this.state.emojilist.filter(
+            filteredEmojis: this.state.currentEmojilist.filter(
                 makeAFilterByCategory(selectedCategory)
             ),
         });
@@ -91,8 +103,14 @@ export class App extends React.Component<Props, State> {
                     value={this.state.selectedCategory}
                 />
                 <button onClick={this.clear}>Clear</button>
-                <button onClick={this.removeEndEmoji}>Del</button>
-                <button onClick={this.changeCategory}>Change it</button>
+                <button onClick={this.removeEndEmoji}>⬅️ Delete</button>
+                <button onClick={this.toggleEmojilist}>
+                    {!remoteEmojilist.length
+                        ? "Load more!"
+                        : this.state.currentEmojilist === emojilist
+                            ? "use remote emojis"
+                            : "use local emojis"}
+                </button>
                 <EmojiKeyboard
                     emojis={this.state.filteredEmojis}
                     onAddEmoji={this.addEmoji}
