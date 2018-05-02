@@ -1,8 +1,8 @@
 import "isomorphic-unfetch";
-import emojilist from "../lib/emoji";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as renderer from "react-test-renderer";
+import emojilist from "../lib/emoji";
 import { App } from "./App";
 
 it("renders without crashing", () => {
@@ -48,7 +48,7 @@ it("removes an emoji from the end of the output when delete is pressed", () => {
         instance.addEmoji("😻");
         instance.removeEndEmoji();
     }
-    expect(instance.state.output).toBe(["😻"]);
+    expect(instance.state.output).toEqual(["😻"]);
 });
 
 it("returns output to default when all emoji are removed", () => {

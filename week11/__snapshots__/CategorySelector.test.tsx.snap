@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`creates a category selector 1`] = `
-<select>
+<select
+  onChange={[MockFunction]}
+  value="objects"
+>
   <option
     value="objects"
   >
