@@ -1,4 +1,5 @@
 import "isomorphic-unfetch";
+import emojilist from "../lib/emoji";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as renderer from "react-test-renderer";
@@ -25,19 +26,29 @@ it("renders all the components we need", () => {
     expect(tree).toMatchSnapshot();
 });
 
-it("removes an emoji from the end of the output when delete is pressed and ", () => {
+it("adds an emoji to state.output when addEmoji is called ", () => {
     const app = renderer.create(<App />);
     const instance = app.getInstance();
 
     if (instance) {
         instance.setState = jest.fn();
         instance.addEmoji("😻");
-        instance.addEmoji("😻");
-        instance.removeEndEmoji();
     }
     expect(instance.setState).toHaveBeenCalledWith({
         output: ["😻"],
     });
+});
+
+it("removes an emoji from the end of the output when delete is pressed", () => {
+    const app = renderer.create(<App />);
+    const instance = app.getInstance();
+
+    if (instance) {
+        instance.addEmoji("😻");
+        instance.addEmoji("😻");
+        instance.removeEndEmoji();
+    }
+    expect(instance.state.output).toBe(["😻"]);
 });
 
 it("returns output to default when all emoji are removed", () => {
@@ -51,5 +62,34 @@ it("returns output to default when all emoji are removed", () => {
     }
     expect(instance.setState).toHaveBeenCalledWith({
         output: ["Type your emoji"],
+    });
+});
+
+it("filters the emoji list when updateCategory is called", () => {
+    const app = renderer.create(<App />);
+    const instance = app.getInstance();
+
+    if (instance) {
+        instance.setState = jest.fn();
+        instance.updateCategory("transportation");
+    }
+    expect(instance.setState).toHaveBeenCalledWith({
+        selectedCategory: "transportation",
+        filteredEmojis: [
+            {
+                code: "helicopter",
+                moji: "🚁",
+                unicode: "1f681",
+                category: "transportation",
+                tags: [],
+                link: null,
+                base: "helicopter",
+                variants: ["helicopter"],
+                score: 0,
+                r18: false,
+                customizations: [],
+                combinations: [],
+            },
+        ],
     });
 });

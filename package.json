@@ -8,16 +8,26 @@
         "serve": "webpack-serve",
         "node": "node --experimental-modules --loader ./lib/loader.mjs node.js",
         "webpack:prod": "webpack-cli --mode production",
-        "delete-everything-and-reset-yes-really":
-            "git reset --hard && git clean -dfe coverage dist && npm install"
+        "delete-everything-and-reset-yes-really": "git reset --hard && git clean -dfe coverage dist && npm install"
     },
     "jest": {
         "transform": {
             ".*": "ts-jest"
         },
         "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-        "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-        "testPathIgnorePatterns": ["node_modules", "dist", "coverage"]
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx",
+            "json",
+            "node"
+        ],
+        "testPathIgnorePatterns": [
+            "node_modules",
+            "dist",
+            "coverage"
+        ]
     },
     "devDependencies": {
         "@types/jest": "^22.1.0",

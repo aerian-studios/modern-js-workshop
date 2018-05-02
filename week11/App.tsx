@@ -20,7 +20,7 @@ interface State {
 
 interface Props {}
 
-const DEFAULT_CATEGORIES = getCategories(emojilist);
+const DEFAULT_CATEGORIES: string[] = getCategories(emojilist);
 const DEFAULT_CATEGORY = DEFAULT_CATEGORIES[0];
 
 let remoteEmojilist: Emoji[] = [];
@@ -30,7 +30,7 @@ const DEFAULT_STATE: State = {
     categories: DEFAULT_CATEGORIES,
     selectedCategory: DEFAULT_CATEGORY,
     filteredEmojis: emojilist.filter(makeAFilterByCategory(DEFAULT_CATEGORY)),
-    currentEmojiList: emojilist,
+    currentEmojilist: emojilist,
 };
 
 export class App extends React.Component<Props, State> {

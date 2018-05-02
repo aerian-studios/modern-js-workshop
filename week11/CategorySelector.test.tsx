@@ -2,11 +2,18 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import { CategorySelector } from "./CategorySelector";
 
-it("creates a category selector", () => {
-    const categories = ["objects", "faces", "people"];
+const categories = ["objects", "faces", "people"];
 
+it("creates a category selector", () => {
+    const change = jest.fn();
     const tree = renderer
-        .create(<CategorySelector categories={categories} />)
+        .create(
+            <CategorySelector
+                categories={categories}
+                value={categories[0]}
+                onChange={change}
+            />
+        )
         .toJSON();
     expect(tree).toMatchSnapshot();
 
@@ -16,10 +23,7 @@ it("creates a category selector", () => {
 });
 
 it("handles onChange", () => {
-    const categories = ["objects", "faces", "people"];
-
     const change = jest.fn();
-
     const tree = renderer
         .create(
             <CategorySelector
