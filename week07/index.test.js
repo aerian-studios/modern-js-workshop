@@ -23,10 +23,12 @@ it("creates buttons in the form", () => {
 
 it("creates a button", () => {
     const button = makeButton("😻");
+
     expect(button).toMatchSnapshot();
 });
 
 it("creates lots of buttons", () => {
     const buttons = makeButtons(emojis);
+
     expect(buttons.length).toEqual(emojis.length);
 });

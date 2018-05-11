@@ -29,6 +29,7 @@ it("calculates the base of a square number", () => {
 it("calculates the cube of a base number", () => {
     const three = calculateBaseFromSquare(9);
     const twentySeven = calculateCube(three);
+
     expect(twentySeven).toEqual(27);
 });
 
@@ -46,5 +47,6 @@ it("filters by the category passed in", () => {
         extractMojis,
         makeExtractFunctionByCategory("gestures")
     );
+
     expect(categoryGetter(emojis)).toEqual(gesturesString);
 });

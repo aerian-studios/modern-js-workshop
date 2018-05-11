@@ -12,13 +12,16 @@ export const appendToTitle = (text) => {
 
 export const makeClickHandler = (character) => () => {
     appendToTitle(character);
+
     return false;
 };
 
 export const makeButton = (moji) => {
     const button = document.createElement("button");
+
     button.textContent = moji;
     button.onclick = makeClickHandler(moji);
+
     return button;
 };
 
@@ -26,12 +29,14 @@ export const makeButtons = (mojis) => mojis.map(makeButton);
 
 export const setKeys = (keys) => {
     const div = document.querySelector("form div");
+
     div.innerHTML = "";
     keys.forEach((key) => div.appendChild(key));
 };
 
 export const createKeyboard = (emojis) => {
     const form = document.getElementById("keyboard");
+
     form.innerHTML = "<div />";
     const category = "faces";
     const makeKeysFromEmojiList = pipe(
@@ -40,6 +45,7 @@ export const createKeyboard = (emojis) => {
         makeButtons
     );
     const buttons = makeKeysFromEmojiList(emojis);
+
     setKeys(buttons);
 };
 

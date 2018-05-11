@@ -31,6 +31,7 @@ const run = async () => {
     const emojis = await fetchEmojis();
 
     const crowd = makeACrowd(emojis);
+
     insertEmoji(crowd);
 };
 

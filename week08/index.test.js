@@ -5,6 +5,7 @@ const html = `<select><option value="Choose a category...">Choose a category...<
 
 it("gets categories", () => {
     const categories = getCategories(emojis);
+
     expect(categories).toEqual([
         "objects",
         "faces",
@@ -18,5 +19,6 @@ it("generates a select", () => {
     const categories = getCategories(emojis);
 
     const select = makeSelect(categories);
+
     expect(select.outerHTML).toEqual(html);
 });
