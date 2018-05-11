@@ -1,0 +1,508 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders all the components we need 1`] = `
+<div
+  className="typewriter"
+>
+  <h1>
+    Type your emoji
+  </h1>
+  <select
+    onChange={[Function]}
+    value="objects"
+  >
+    <option
+      value="objects"
+    >
+      Objects
+    </option>
+    <option
+      value="faces"
+    >
+      Faces
+    </option>
+    <option
+      value="gestures"
+    >
+      Gestures
+    </option>
+    <option
+      value="transportation"
+    >
+      Transportation
+    </option>
+    <option
+      value="people"
+    >
+      People
+    </option>
+  </select>
+  <button
+    onClick={[Function]}
+    style={
+      Object {
+        "border": "1px red solid",
+      }
+    }
+  >
+    Clear
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    ⬅️ Delete
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Load more!
+  </button>
+  <div
+    id="keyboard"
+  >
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🎿
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🏷
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      👑
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      👕
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      👖
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      👗
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      👛
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      👝
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      👢
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      💊
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      💍
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      💎
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      💴
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      💶
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      💷
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      💺
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📀
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📅
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📔
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📖
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📚
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📟
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📠
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📣
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📻
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      📼
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🔑
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🔒
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🔔
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🕳
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🖪
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🖫
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🖺
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🗈
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🗏
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🗐
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🗿
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🚪
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      🛀
+    </button>
+    <button
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "border": "1px red solid",
+        }
+      }
+    >
+      ⌚️
+    </button>
+  </div>
+  <h1>
+    Type your emoji
+  </h1>
+</div>
+`;
