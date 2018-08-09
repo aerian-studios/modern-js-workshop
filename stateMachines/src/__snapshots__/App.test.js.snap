@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`State chart 1`] = `
+<main>
+  <p>
+    LoggedOut
+  </p>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="input-group"
+    >
+      <label
+        htmlFor="username"
+      >
+        Username
+      </label>
+      <input
+        id="username"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group"
+    >
+      <label
+        htmlFor="password"
+      >
+        password
+      </label>
+      <input
+        id="password"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <input
+      type="submit"
+      value="Log in"
+    />
+  </form>
+</main>
+`;
+
+exports[`State chart 2`] = `
+<main>
+  <p>
+    LoggingIn
+  </p>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="input-group"
+    >
+      <label
+        htmlFor="username"
+      >
+        Username
+      </label>
+      <input
+        id="username"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group"
+    >
+      <label
+        htmlFor="password"
+      >
+        password
+      </label>
+      <input
+        id="password"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <input
+      type="submit"
+      value="Log in"
+    />
+  </form>
+  <div
+    className="message-overlay message-info message-show"
+  >
+    <p>
+      Logging in...
+    </p>
+  </div>
+</main>
+`;
+
+exports[`State chart 3`] = `
+<main>
+  <p>
+    Error
+  </p>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="input-group"
+    >
+      <label
+        htmlFor="username"
+      >
+        Username
+      </label>
+      <input
+        id="username"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group"
+    >
+      <label
+        htmlFor="password"
+      >
+        password
+      </label>
+      <input
+        id="password"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <input
+      type="submit"
+      value="Log in"
+    />
+  </form>
+  <div
+    className="message-overlay message-error message-show"
+  >
+    <p>
+      There was an error with your username or password
+    </p>
+  </div>
+</main>
+`;
+
+exports[`State chart 4`] = `
+<main>
+  <p>
+    Success
+  </p>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="input-group"
+    >
+      <label
+        htmlFor="username"
+      >
+        Username
+      </label>
+      <input
+        id="username"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group"
+    >
+      <label
+        htmlFor="password"
+      >
+        password
+      </label>
+      <input
+        id="password"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <input
+      type="submit"
+      value="Log in"
+    />
+  </form>
+  <div
+    className="message-overlay message-success message-show"
+  >
+    <p>
+      You have been logged in
+    </p>
+  </div>
+</main>
+`;
+
+exports[`State chart 5`] = `
+<main>
+  <p>
+    LoggedIn
+  </p>
+</main>
+`;

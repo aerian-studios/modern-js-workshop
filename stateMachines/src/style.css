@@ -1,0 +1,67 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-group {
+  padding: 4px 4px 8px;
+  font-size: 20px
+}
+
+label {
+  display: inline-block;
+  min-width: 20%;
+  margin-right: 8px;
+}
+
+input {
+  padding: 4px 8px;
+  display: inline-block;
+}
+
+input[type=submit] {
+  appearance: none;
+  border: 2px solid darkgreen;
+  padding: 4px 8px;
+  font-size: 18px;
+  color: white;
+  background-color: green;
+}
+
+.message-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px 10px rgba(0,0,0, 0.2);
+  border: 1px solid;
+  width: 70%;
+  min-height: 200px;
+  z-index: 200;
+  background-color:rgba(255,255,255, 0.8);
+  padding: 8px;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-info {
+  border-color: darkcyan;
+  color: darkcyan;
+}
+.message-error {
+  border-color: darkred;
+  color: darkred;
+}
+.message-success {
+  border-color: darkgreen;
+  color: darkgreen;
+}
+
+.message-hide {
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: translate(-50%, -200%);
+}
