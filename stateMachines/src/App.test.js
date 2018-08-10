@@ -1,5 +1,6 @@
 import App from "./App";
+import { testStateMachine } from "react-automata";
 
-it("fails first test", () => {
-    expect(true).toEqual(false);
+it("State chart tests", () => {
+    testStateMachine(App);
 });
