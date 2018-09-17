@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Vanilla app</title>
+</head>
+<link href="./styles.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./script.js"></script>
+<body>
+
+<div class="jQuery Example Form">
+    <form id="form" class="form" method="post">
+        <h1 class="form__header">Would you like to know more?</h1>
+        <fieldset class="form_fieldset">
+            <div class="field">
+                <label class="field__label" for="username">Username</label>
+                <input name="postcode" 
+                    required 
+                    type="text" 
+                    id="username" 
+                    class="field__input field__input--text" 
+                    maxLength="50" />
+            </div>
+            <div class="field">
+                <label class="field__label" for="email">Email</label>
+                <input name="email" 
+                    required 
+                    type="email" 
+                    id="email" 
+                    class="field__input field__input--text" 
+                    maxLength="50" />
+            </div>
+            <div class="field">
+                <label class="field__label" for="password1">Password</label>
+                <input name="password1" 
+                    required type="text" 
+                    id="password1" 
+                    class="field__input field__input--text" 
+                    maxLength="50"  />
+            </div>
+            <div class="field">
+                <label class="field__label" for="password2">Please confirm password</label>
+                <input name="password2" 
+                    required 
+                    type="text" 
+                    id="password2" 
+                    class="field__input field__input--text" 
+                    maxLength="50"  />
+            </div>
+        </fieldset>
+        <footer class="footer">
+            <button class="footer__button" type="submit">Submit!</button>
+        </footer>
+    </form>
+</div>
+</body>
+</html>
