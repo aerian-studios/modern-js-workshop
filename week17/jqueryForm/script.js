@@ -1,14 +1,9 @@
 $( document ).ready(function() {
     
-    function checkPasswordsMatch(password1, password2) {
-        return password1 === password2;
-    }
-
     function handlePasswordMatch(event) {
-        console.log("event: ", event)
         var password1 = $('#password1').val();
         var password2 = $('#password2').val();
-        var passwordMatch = checkPasswordsMatch(password1, password2);
+        var passwordMatch = password1 === password2;
         
         $(".footer__button").prop("disabled", !passwordMatch);
         $(".footer__error").toggleClass("footer__error--display", !passwordMatch);
@@ -22,7 +17,7 @@ $( document ).ready(function() {
 
         event.preventDefault();
 
-        if ((userName && email && password1 && password2) && checkPasswordsMatch(password1, password2)) {
+        if ((userName && email && password1 && password2) && (password1 === password2)) {
             // Make post here, if end point existed
             // $.post(url);
 
