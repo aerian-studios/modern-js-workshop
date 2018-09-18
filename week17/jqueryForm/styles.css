@@ -52,6 +52,7 @@
 .footer__button {
     display: block;
     padding: 8px 16px;
+    margin-top: 16px;
     border: none;
     border-radius: 3px;
     background-color: #61b2a7;
@@ -64,3 +65,16 @@
 .footer__button:hover {
     opacity: 0.7;
 }
+
+.footer__error {
+    font-size: 0.9em;
+    font-style: italic;
+    color: salmon;
+    display: none;  
+}
+
+.footer__error--display {
+    display: block;
+}
+
+
