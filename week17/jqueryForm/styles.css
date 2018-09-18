@@ -66,6 +66,11 @@
     opacity: 0.7;
 }
 
+.footer__button:disabled {
+    opacity: 0.7;
+    background-color: grey;
+}
+
 .footer__error {
     font-size: 0.9em;
     font-style: italic;

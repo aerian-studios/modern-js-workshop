@@ -1,14 +1,28 @@
 $( document ).ready(function() {
+    
+    function checkPasswordsMatch(password1, password2) {
+        return password1 === password2;
+    }
 
-    $("#form").submit(function (event) {
-        event.preventDefault();
+    function handlePasswordMatch(event) {
+        console.log("event: ", event)
+        var password1 = $('#password1').val();
+        var password2 = $('#password2').val();
+        var passwordMatch = checkPasswordsMatch(password1, password2);
+        
+        $(".footer__button").prop("disabled", !passwordMatch);
+        $(".footer__error").toggleClass("footer__error--display", !passwordMatch);
+    }
+
+    function submitForm(event) {
         var userName = event.target.username.value;
             email = event.target.email.value,
             password1 = event.target.password1.value,
             password2 = event.target.password2.value;
-        var formCompleted = userName && email && password1 && password2;
 
-        if (formCompleted && (password1 === password2)) {
+        event.preventDefault();
+
+        if ((userName && email && password1 && password2) && checkPasswordsMatch(password1, password2)) {
             // Make post here, if end point existed
             // $.post(url);
 
@@ -22,8 +36,15 @@ $( document ).ready(function() {
                 ["password2:", password2]
             ])
         } else {
-            $(".footer__error").addClass("footer__error--display");
             $(".footer__button").html("Try again");        
         }
+    }
+
+    $("#password2").keyup(function (event) {
+        handlePasswordMatch(event);
+    })
+
+    $("#form").submit(function (event) {
+        submitForm(event);
     })
 });
