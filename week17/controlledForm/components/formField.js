@@ -1,7 +1,7 @@
 import React from "react";
 
-const FormFieldSet = ({ filedText, filedId, type }) =>
-    <div className="field">
+const FormField = ({ filedText, filedId, type, callBack }) =>
+    <div className="field" onChange={ (e) => { callBack(e, filedId) } }>
         <label className="field__label" htmlFor={filedId}>{filedText}</label>
         <input
             id={filedId}
@@ -11,5 +11,4 @@ const FormFieldSet = ({ filedText, filedId, type }) =>
             className="field__input field__input--text" />
     </div>
 
-
-export default FormFieldSet;
+export default FormField;

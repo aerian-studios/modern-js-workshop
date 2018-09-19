@@ -1,26 +1,29 @@
 import React, { Component } from "react";
-import FormFieldSet from "./formFieldSet";
+import FormField from "./formField";
 import Footer from "./footer";
-import _ from "lodash";
 
 class Form extends Component {
 
     constructor(props) {
         super(props);
-        this.fields = {};
-    }
 
-    gatherData() {
-        return _.mapValues(this.fields, 'value');
+        this.state = {
+            username: "",
+            email: "",
+            password1: "",
+            password2: ""
+        };
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        console.table(this.gatherData());
+        console.table(this.state);
     }
 
-    returnFieldData () {
-
+    gatherFieldData (e, id) {
+        this.setState({
+            [id]: e.target.value
+        })
     }
 
     render() {
@@ -31,10 +34,10 @@ class Form extends Component {
                 }}>
                     <h1 className="form__header">Would you like to know more?</h1>
                     <fieldset className="form_fieldset">
-                        <FormFieldSet filedText="Username" filedId="username" type="text" callBack={ this.returnFieldData } />
-                        <FormFieldSet filedText="Email" filedId="email" type="text" callBack={ this.returnFieldData } />
-                        <FormFieldSet filedText="Password" filedId="password1" type="text" callBack={ this.returnFieldData } />
-                        <FormFieldSet filedText="Please confirm password" filedId="password2" type="text" callBack={ this.returnFieldData } />
+                        <FormField filedText="Username" filedId="username" type="text" callBack={ (e, id) => { this.gatherFieldData(e, id) }} />
+                        <FormField filedText="Email" filedId="email" type="text" callBack={ (e, id) => { this.gatherFieldData(e, id) }} />
+                        <FormField filedText="Password" filedId="password1" type="text" callBack={ (e, id) => { this.gatherFieldData(e, id) }} />
+                        <FormField filedText="Please confirm password" filedId="password2" type="text" callBack={ (e, id) => { this.gatherFieldData(e, id) }} />
                     </fieldset>
                     <Footer />
                 </form>
