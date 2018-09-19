@@ -7,8 +7,6 @@ export class App extends Component {
     constructor (props) {
         super(props);
         this.fields = {};
-
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     gatherData () {
@@ -24,13 +22,13 @@ export class App extends Component {
         return (
             <div className="field">
                 <label className="field__label" htmlFor={ filedId }>{ filedText }</label>
-                <input 
+                <input
                     id ={ filedId } 
                     required 
                     type="text"
                     maxLength="50"
                     className="field__input field__input--text"
-                    ref={ (e) => this.fields.postcode = e } />
+                    ref={ (e) => this.fields[filedId] = e } />
             </div>
         )
     }
@@ -39,7 +37,7 @@ export class App extends Component {
         return (
             <footer className="footer">
                 <span className="footer__error">Passwords do not match</span>
-                <button className="footer__button" disabled type="submit">Submit</button>
+                <button className="footer__button" type="submit">Submit</button>
             </footer>
         )
     }
@@ -47,7 +45,7 @@ export class App extends Component {
     render() {
         return (
             <div className="conatiner">
-                <form id="form" className="form" onSubmit={this.handleSubmit}>
+                <form className="form" onSubmit={ (e)=> { this.handleSubmit(e) }}>
                     <h1 className="form__header">Would you like to know more?</h1>
                     <fieldset className="form_fieldset">
                         { this.renderField("Username", "username") }

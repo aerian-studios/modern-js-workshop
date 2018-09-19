@@ -7,6 +7,7 @@
     box-sizing: border-box;
     margin: 32px;
     font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-align: left;
 }
 
 .form__header {
