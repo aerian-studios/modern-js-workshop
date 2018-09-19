@@ -39,7 +39,7 @@ export class App extends Component {
         return (
             <footer className="footer">
                 <span className="footer__error">Passwords do not match</span>
-                <button className="footer__button" disabled type="submit">Submit?</button>
+                <button className="footer__button" disabled type="submit">Submit</button>
             </footer>
         )
     }
