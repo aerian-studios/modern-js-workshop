@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import Form from './components/form';
+import "./styles.css";
 
-export class App extends Component {
+class App extends Component {
     render() {
         return (
-            <div className="typewriter">
-                This
-            </div>
-        );
+        <div className="App">
+            <Form />
+        </div>
+        )
     }
 }
+
+export default App;

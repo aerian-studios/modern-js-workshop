@@ -57,6 +57,7 @@
     },
     "dependencies": {
         "isomorphic-unfetch": "^2.0.0",
+        "lodash": "^4.17.11",
         "react": "^16.3.1",
         "react-dom": "^16.3.1",
         "webpack-serve": "^0.3.1"
