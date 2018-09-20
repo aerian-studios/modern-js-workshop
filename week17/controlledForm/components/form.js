@@ -2,7 +2,27 @@ import React, { Component } from "react";
 import FormInput from "./formInput";
 import Footer from "./footer";
 import FormSelect from "./formSelect";
-import _ from 'lodash';
+import _ from "lodash";
+
+
+// Helper functions
+const isMatchValid = (value1, value2, title) =>
+    ((value1 !== value2) && value1.length > 0) ? [`${title} do not match`] : [];
+
+const isLengthValid = (value, title, length) =>
+    ((value.length < length) && value.length > 0) ? [`${title} need to be at least 6 characters long`] : [];
+
+const isAlphanumeric = (value, title) => {
+    const isAlphaNumeric = () =>
+        (/\d/).test(value) && (/[a-z]/i).test(value);
+    return (!isAlphaNumeric() && value.length > 0) ? [`${title} need to include both letters numbers`] : [];
+};
+
+const isFormComplete = (formData) => {
+    const fieldsCompleted = _.map(formData, (data) => data.length > 0 );
+    return _.every(fieldsCompleted, (field)=> field);
+};
+
 
 class Form extends Component {
 
@@ -34,43 +54,25 @@ class Form extends Component {
         })
     }
 
-    passwordsMatchValid() {
-        const { password1, password2 } = this.state.formData;
-        return ((password1 !== password2) && password1.length > 0) ? ["Passwords do not match"] : [];
-    }
-
-    passwordsLengthValid() {
-        const { password1 } = this.state.formData;
-        return ((password1.length < 6) && password1.length > 0) ? ["Password need to be at least 6 characters long"] : [];
-    }
-
-    passwordAlphanumericValid() {
-        const { password1 } = this.state.formData;
-        const isAlphaNumeric = () =>
-            (/\d/).test(password1) && (/[a-z]/i).test(password1);
-
-        return (!isAlphaNumeric() && password1.length > 0) ? ["Password need to include both letters numbers"] : [];
-    }
-
     validation() {
-        const passwordsLengthMsg = this.passwordsLengthValid();
-        const passwordAlphanumericMsg = this.passwordAlphanumericValid();
-        const passwordsMatchMsg = this.passwordsMatchValid();
+        const { password1, password2 } = this.state.formData;
+        const passwordsLengthMsg = isLengthValid(password1, "Password", 6);
+        const passwordAlphanumericMsg = isAlphanumeric(password1, "Password");
+        const passwordsMatchMsg = isMatchValid(password1, password2, "Password");
         // Add any other validation here
 
         this.setState({
             validationMessages: [...passwordsMatchMsg, ...passwordsLengthMsg, ...passwordAlphanumericMsg]
+        }, () => {
+            this.checkFormCompletion();
         });
     }
 
     checkFormCompletion() {
-        const { formData } = this.state;
-        const passwordsMatch = formData.password1 === formData.password2;
-        const fieldsCompleted = _.map(formData, (data) => data.length > 0 );
-        const isFormCompleted = _.every(fieldsCompleted, (field)=> field);
+        const { formData, validationMessages } = this.state;
 
         this.setState({
-            buttonEnabled: isFormCompleted && passwordsMatch,
+            buttonEnabled: isFormComplete(formData) && validationMessages.length === 0
         });
     }
 
@@ -81,7 +83,6 @@ class Form extends Component {
             formData: { ...this.state.formData, [name]: _.trimStart(value) }
             }, () => {
             this.validation();
-            this.checkFormCompletion();
         });
     }
 
