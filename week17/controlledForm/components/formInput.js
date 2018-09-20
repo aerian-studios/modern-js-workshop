@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormField = ({ label, id, type, callBack, maxLength, value, isRequired }) =>
+const FormInput = ({ label, id, type, callBack, maxLength, value, isRequired }) =>
     <div className="field">
         <label className="field__label" htmlFor={ id }>{ label }</label>
         <input
@@ -14,4 +14,4 @@ const FormField = ({ label, id, type, callBack, maxLength, value, isRequired }) 
             onChange={ (e) => { callBack(e) }} />
     </div>
 
-export default FormField;
+export default FormInput;

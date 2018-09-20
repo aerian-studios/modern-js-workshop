@@ -1,15 +1,18 @@
 import React from "react";
 
-const FormSelect = ({name, label, callBack, selectValue, options}) =>
+const FormSelect = ({id, label, callBack, value, options}) =>
     <div className="field">
-        <label className="field__label" htmlFor={ name }>{ label }</label>
+        <label className="field__label" htmlFor={ id }>{ label }</label>
         <select
-            id={ name }
-            name={ name }
-            value={ selectValue }
+            id={ id }
+            name={ id }
+            value={ value }
             className="field field--select"
             onChange={ (e) => { callBack(e) } }>
-            { options.map(({value, text}) => <option key={ value } value={ value }>{ text }</option>) }
+            {
+                options.map(({optionsValue, text}, index) =>
+                <option key={ `options-${index}` } value={ optionsValue }>{ text }</option>)
+            }
         </select>
     </div>
 

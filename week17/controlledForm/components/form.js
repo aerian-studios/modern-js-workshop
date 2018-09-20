@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FormField from "./formField";
+import FormInput from "./formInput";
 import Footer from "./footer";
 import FormSelect from "./formSelect";
 import _ from 'lodash';
@@ -18,7 +18,8 @@ class Form extends Component {
                 password2: "",
             },
             buttonEnabled: false,
-            formSubmitted: false
+            formSubmitted: false,
+            errorMessages: []
         };
     }
 
@@ -32,13 +33,18 @@ class Form extends Component {
         })
     }
 
-    passwordErrorMsg() {
-        const { formData } = this.state;
+    validatePassword() {
         const { password1, password2 } = this.state.formData;
-        const passwordsMatch = formData.password1 === formData.password2;
 
-        return (!passwordsMatch && password1.length > 0 && password2.length > 0)
-            ? ["Passwords do not match"] : [];
+        return (password1 === password2) ? [] : ["Passwords do not match"];
+    }
+
+    validationMessages() {
+        const passwordError = this.validatePassword();
+
+        this.setState({
+            errorMessages: [passwordError]
+        });
     }
 
     checkFormCompletion() {
@@ -58,6 +64,7 @@ class Form extends Component {
         this.setState({
             formData: { ...this.state.formData, [name]: _.trimStart(value) }
             }, () => {
+            this.validationMessages();
             this.checkFormCompletion();
         });
     }
@@ -71,7 +78,7 @@ class Form extends Component {
 
     render() {
         const { title, username, email, password1, password2 } = this.state.formData;
-        const { buttonEnabled, formSubmitted } = this.state;
+        const { buttonEnabled, formSubmitted, errorMessages } = this.state;
         
         return (
             <div className="conatiner">
@@ -80,27 +87,27 @@ class Form extends Component {
                     <fieldset className="form_fieldset">
                         <FormSelect
                             options={ this.titleOptions() }
-                            selectValue={ title }
+                            value={ title }
                             label="Title"
                             id="title"
                             callBack={(e) => { this.handleChange(e)}} />
-                        <FormField
+                        <FormInput
                             value={ username }
                             label="Username"
                             id="username"
                             callBack={(e) => { this.handleChange(e)}} />
-                        <FormField
+                        <FormInput
                             value={ email }
                             type="email"
                             label="Email"
                             id="email"
                             callBack={(e) => { this.handleChange(e)}} />
-                        <FormField
+                        <FormInput
                             value={ password1 }
                             label="Password"
                             id="password1"
                             callBack={(e) => { this.handleChange(e)}} />
-                        <FormField
+                        <FormInput
                             value={ password2 }
                             label="Repeat password"
                             id="password2"
@@ -109,7 +116,7 @@ class Form extends Component {
                     <Footer
                         buttonLabelState1={ "Submit" }
                         buttonLabelState2={ formSubmitted && "Success!" }
-                        validationMessages={ this.passwordErrorMsg() }
+                        validationMessages={ errorMessages }
                         isDisabled={ !buttonEnabled } />
                 </form>
             </div>
