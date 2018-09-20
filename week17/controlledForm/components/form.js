@@ -98,7 +98,7 @@ class Form extends Component {
         const { buttonEnabled, formSubmitted, validationMessages } = this.state;
         
         return (
-            <div className="conatiner">
+            <div className="container">
                 <form className="form" onSubmit={(e) => { this.handleSubmit(e)}}>
                     <h1 className="form__header">Would you like to know more?</h1>
                     <fieldset className="form_fieldset">

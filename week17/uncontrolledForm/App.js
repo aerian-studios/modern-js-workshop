@@ -44,7 +44,7 @@ export class App extends Component {
 
     render() {
         return (
-            <div className="conatiner">
+            <div className="container">
                 <form className="form" onSubmit={ (e)=> { this.handleSubmit(e) }}>
                     <h1 className="form__header">Would you like to know more?</h1>
                     <fieldset className="form_fieldset">
