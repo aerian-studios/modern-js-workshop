@@ -51,7 +51,6 @@ export class App extends Component {
                         { this.renderField("Username", "username") }
                         { this.renderField("Email", "email") }
                         { this.renderField("Password", "password1") }
-                        { this.renderField("Please confirm password", "password2") }
                     </fieldset>
                     { this.renderFooter() }
                 </form>

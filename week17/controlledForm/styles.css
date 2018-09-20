@@ -8,16 +8,17 @@
     margin: 32px;
     font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
     text-align: left;
+    font-weight: 300;
 }
 
 .form__header {
     display: block;
-    color: #333;
-    font-weight: 300;
+    color: #3CB371;
     padding-bottom: 16px;
     margin: 0 0 16px 0;
     border-bottom: 3px white solid;
     font-size: 1.8em;
+    font-weight: 300;
 }
 
 .form_fieldset {
@@ -74,9 +75,10 @@
 }
 
 .footer__error {
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-style: italic;
     color: salmon;
+    margin: 4px 0;
 }
 
 .footer__error--display {
@@ -85,4 +87,10 @@
 
 .form_feldset {
     border: none;
+}
+
+.field__hint {
+    font-size: 0.8em;
+    font-style: italic;
+    color: grey;
 }
