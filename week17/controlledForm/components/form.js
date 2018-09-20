@@ -12,7 +12,8 @@ class Form extends Component {
         this.state = {
             formData: {
                 title: "Mr",
-                username: "",
+                firstname: "",
+                surname: "",
                 email: "",
                 password1: "",
                 password2: "",
@@ -33,17 +34,31 @@ class Form extends Component {
         })
     }
 
-    validatePassword() {
+    passwordsMatchValid() {
         const { password1, password2 } = this.state.formData;
+        return ((password1 !== password2) && password1.length > 0) ? ["Passwords do not match"] : [];
+    }
 
-        return (password1 === password2) ? [] : ["Passwords do not match"];
+    passwordsLengthValid() {
+        const { password1 } = this.state.formData;
+        return ((password1.length < 6) && password1.length > 0) ? ["Password need to be at least 6 characters long"] : [];
+    }
+
+    passwordAlphanumericValid() {
+        const { password1 } = this.state.formData;
+        const isAlphsNumeric = () =>
+            (/\d/).test(password1) && (/[a-z]/i).test(password1);
+
+        return (!isAlphsNumeric() && password1.length > 0) ? ["Password need to include both letters numbers"] : [];
     }
 
     validationMessages() {
-        const passwordError = this.validatePassword();
+        const passwordsLengthMsg = this.passwordsLengthValid();
+        const passwordAlphanumericMsg = this.passwordAlphanumericValid();
+        const passwordsMatchMsg = this.passwordsMatchValid();
 
         this.setState({
-            errorMessages: [passwordError]
+            errorMessages: [...passwordsMatchMsg, ...passwordsLengthMsg, ...passwordAlphanumericMsg]
         });
     }
 
@@ -77,7 +92,7 @@ class Form extends Component {
     }
 
     render() {
-        const { title, username, email, password1, password2 } = this.state.formData;
+        const { title, firstname, surname, email, password1, password2 } = this.state.formData;
         const { buttonEnabled, formSubmitted, errorMessages } = this.state;
         
         return (
@@ -92,9 +107,14 @@ class Form extends Component {
                             id="title"
                             callBack={(e) => { this.handleChange(e)}} />
                         <FormInput
-                            value={ username }
-                            label="Username"
-                            id="username"
+                            value={ firstname }
+                            label="First name"
+                            id="firstname"
+                            callBack={(e) => { this.handleChange(e)}} />
+                        <FormInput
+                            value={ surname }
+                            label="Surname"
+                            id="surname"
                             callBack={(e) => { this.handleChange(e)}} />
                         <FormInput
                             value={ email }
@@ -105,6 +125,7 @@ class Form extends Component {
                         <FormInput
                             value={ password1 }
                             label="Password"
+                            hint={ "password must be at least 6 characters and contain both letters and numbers" }
                             id="password1"
                             callBack={(e) => { this.handleChange(e)}} />
                         <FormInput
