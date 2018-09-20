@@ -35,7 +35,7 @@
     margin-bottom: 16px;
 }
 
-.field__input {
+.field__input, .field--select {
     padding: 4px;
     margin: 8px 8px 8px 0;
     border-radius: 2px;
@@ -44,6 +44,7 @@
     box-sizing: border-box;
     border: 1px solid #d9d9d9;
     font-weight: 300;
+    background-color: #ffffff;
 }
 
 .field__label {
@@ -83,4 +84,6 @@
     display: block;
 }
 
-
+.form_feldset {
+    border: none;
+}

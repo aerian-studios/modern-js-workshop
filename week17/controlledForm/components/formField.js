@@ -1,14 +1,17 @@
 import React from "react";
 
-const FormField = ({ filedText, filedId, type, callBack }) =>
-    <div className="field" onChange={ (e) => { callBack(e, filedId) } }>
-        <label className="field__label" htmlFor={filedId}>{filedText}</label>
+const FormField = ({ label, filedId, type, callBack, maxLength, value, isRequired, name }) =>
+    <div className="field">
+        <label className="field__label" htmlFor={ filedId }>{ label }</label>
         <input
-            id={filedId}
-            type={ type }
-            required
-            maxLength="50"
-            className="field__input field__input--text" />
+            id={ name }
+            name={ name }
+            value={ value }
+            type={ type ? type : "text" }
+            required={ isRequired }
+            maxLength={ maxLength ? maxLength : 50 }
+            className="field__input field__input--text"
+            onChange={ (e) => { callBack(e, filedId) }} />
     </div>
 
 export default FormField;

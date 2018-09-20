@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import FormField from "./formField";
+import PasswordFields from "./passwordFields";
 import Footer from "./footer";
+import FormSelect from "./formSelect";
 
 class Form extends Component {
 
@@ -8,6 +10,7 @@ class Form extends Component {
         super(props);
 
         this.state = {
+            title: "Mr",
             username: "",
             email: "",
             password1: "",
@@ -20,10 +23,19 @@ class Form extends Component {
         console.table(this.state);
     }
 
-    gatherFieldData (e, id) {
+    setFormState(e) {
+        // Validation here?
+        const { value, name } = e.target;
         this.setState({
-            [id]: e.target.value
+            [name]: value
         })
+    }
+
+    titleOptions() {
+        return [{value: "mr", text:"Mr"},
+                {value: "Mrs", text:"Mrs"},
+                {value: "miss", text:"Miss"},
+                {value: "dr", text:"Dr"}]
     }
 
     render() {
@@ -34,24 +46,27 @@ class Form extends Component {
                 }}>
                     <h1 className="form__header">Would you like to know more?</h1>
                     <fieldset className="form_fieldset">
-                        <FormField filedText="Username"
-                                   filedId="username"
-                                   type="text"
-                                   callBack={ (e, id) => { this.gatherFieldData(e, id) }} />
-                        <FormField filedText="Email"
-                                   filedId="email"
-                                   type="text"
-                                   callBack={ (e, id) => { this.gatherFieldData(e, id) }} />
-                        <FormField filedText="Password"
-                                   filedId="password1"
-                                   type="text"
-                                   callBack={ (e, id) => { this.gatherFieldData(e, id) }} />
-                        <FormField filedText="Please confirm password"
-                                   filedId="password2"
-                                   type="text"
-                                   callBack={ (e, id) => { this.gatherFieldData(e, id) }} />
+                        <FormSelect
+                            options={ this.titleOptions() }
+                            selectValue={ this.state.title }
+                            label="Title"
+                            name="title"
+                            callBack={ (e) => { this.setFormState(e) }} />
+                        <FormField
+                            label="Username"
+                            name="username"
+                            callBack={ (e) => { this.setFormState(e) }} />
+                        <FormField
+                            label="Email"
+                            name="email"
+                            callBack={ (e) => { this.setFormState(e) }} />
+                        <PasswordFields
+                            callBack={ (e) => { this.setFormState(e) }} />
                     </fieldset>
-                    <Footer />
+                    <Footer
+                        validationMsg={ "" }
+                        errorMsg={ "" }
+                        isDisbaled={ false } />
                 </form>
             </div>
         );

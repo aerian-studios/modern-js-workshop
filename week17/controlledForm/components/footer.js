@@ -1,9 +1,10 @@
 import React from "react";
 
-const Footer = () =>
+const Footer = ({ errorMsg, validationMsg, isDisbaled }) =>
     <footer className="footer">
-        <span className="footer__error">Passwords do not match</span>
-        <button className="footer__button" type="submit">Submit</button>
+        { validationMsg && <span className="footer__error">{ validationMsg }</span> }
+        { errorMsg && <span className="footer__error">{ errorMsg }</span> }
+        <button disabled={ isDisbaled } className="footer__button" type="submit">Submit</button>
     </footer>
 
 export default Footer;
