@@ -20,7 +20,7 @@ class Form extends Component {
             },
             buttonEnabled: false,
             formSubmitted: false,
-            errorMessages: []
+            validationMessages: []
         };
     }
 
@@ -46,19 +46,20 @@ class Form extends Component {
 
     passwordAlphanumericValid() {
         const { password1 } = this.state.formData;
-        const isAlphsNumeric = () =>
+        const isAlphaNumeric = () =>
             (/\d/).test(password1) && (/[a-z]/i).test(password1);
 
-        return (!isAlphsNumeric() && password1.length > 0) ? ["Password need to include both letters numbers"] : [];
+        return (!isAlphaNumeric() && password1.length > 0) ? ["Password need to include both letters numbers"] : [];
     }
 
-    validationMessages() {
+    validation() {
         const passwordsLengthMsg = this.passwordsLengthValid();
         const passwordAlphanumericMsg = this.passwordAlphanumericValid();
         const passwordsMatchMsg = this.passwordsMatchValid();
+        // Add any other validation here
 
         this.setState({
-            errorMessages: [...passwordsMatchMsg, ...passwordsLengthMsg, ...passwordAlphanumericMsg]
+            validationMessages: [...passwordsMatchMsg, ...passwordsLengthMsg, ...passwordAlphanumericMsg]
         });
     }
 
@@ -79,7 +80,7 @@ class Form extends Component {
         this.setState({
             formData: { ...this.state.formData, [name]: _.trimStart(value) }
             }, () => {
-            this.validationMessages();
+            this.validation();
             this.checkFormCompletion();
         });
     }
@@ -93,7 +94,7 @@ class Form extends Component {
 
     render() {
         const { title, firstname, surname, email, password1, password2 } = this.state.formData;
-        const { buttonEnabled, formSubmitted, errorMessages } = this.state;
+        const { buttonEnabled, formSubmitted, validationMessages } = this.state;
         
         return (
             <div className="conatiner">
@@ -137,7 +138,7 @@ class Form extends Component {
                     <Footer
                         buttonLabelState1={ "Submit" }
                         buttonLabelState2={ formSubmitted && "Success!" }
-                        validationMessages={ errorMessages }
+                        validationMessages={ validationMessages }
                         isDisabled={ !buttonEnabled } />
                 </form>
             </div>
