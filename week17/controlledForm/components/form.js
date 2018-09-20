@@ -18,8 +18,7 @@ class Form extends Component {
                 password2: "",
             },
             buttonEnabled: false,
-            formSubmitted: false,
-            errorMessages: []
+            formSubmitted: false
         };
     }
 
@@ -49,15 +48,15 @@ class Form extends Component {
         const isFormCompleted = _.every(fieldsCompleted, (field)=> field);
 
         this.setState({
-            buttonEnabled: isFormCompleted && passwordsMatch
+            buttonEnabled: isFormCompleted && passwordsMatch,
         });
     }
 
-    handleOnChange(e) {
+    handleChange(e) {
         const { value, name } = e.target;
 
         this.setState({
-            formData: { ...this.state.formData, [name]: value }
+            formData: { ...this.state.formData, [name]: _.trimStart(value) }
             }, () => {
             this.checkFormCompletion();
         });
@@ -72,7 +71,7 @@ class Form extends Component {
 
     render() {
         const { title, username, email, password1, password2 } = this.state.formData;
-        const { buttonEnabled, errorMessages, formSubmitted } = this.state;
+        const { buttonEnabled, formSubmitted } = this.state;
         
         return (
             <div className="conatiner">
@@ -83,35 +82,34 @@ class Form extends Component {
                             options={ this.titleOptions() }
                             selectValue={ title }
                             label="Title"
-                            name="title"
-                            callBack={(e) => { this.handleOnChange(e)}} />
+                            id="title"
+                            callBack={(e) => { this.handleChange(e)}} />
                         <FormField
                             value={ username }
                             label="Username"
-                            name="username"
-                            callBack={(e) => { this.handleOnChange(e)}} />
+                            id="username"
+                            callBack={(e) => { this.handleChange(e)}} />
                         <FormField
                             value={ email }
                             type="email"
                             label="Email"
-                            name="email"
-                            callBack={(e) => { this.handleOnChange(e)}} />
+                            id="email"
+                            callBack={(e) => { this.handleChange(e)}} />
                         <FormField
                             value={ password1 }
                             label="Password"
-                            name="password1"
-                            callBack={(e) => { this.handleOnChange(e)}} />
+                            id="password1"
+                            callBack={(e) => { this.handleChange(e)}} />
                         <FormField
                             value={ password2 }
                             label="Repeat password"
-                            name="password2"
-                            callBack={(e) => { this.handleOnChange(e)}} />
+                            id="password2"
+                            callBack={(e) => { this.handleChange(e)}} />
                     </fieldset>
                     <Footer
-                        labelState1={ "Submit" }
-                        labelState2={ formSubmitted && "Success!" }
+                        buttonLabelState1={ "Submit" }
+                        buttonLabelState2={ formSubmitted && "Success!" }
                         validationMessages={ this.passwordErrorMsg() }
-                        errorMessages={ errorMessages }
                         isDisabled={ !buttonEnabled } />
                 </form>
             </div>
