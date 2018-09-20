@@ -54,6 +54,14 @@ class Form extends Component {
         })
     }
 
+    checkFormCompletion() {
+        const { formData, validationMessages } = this.state;
+
+        this.setState({
+            buttonEnabled: isFormComplete(formData) && validationMessages.length === 0
+        });
+    }
+
     validation() {
         const { password1, password2 } = this.state.formData;
         const passwordsLengthMsg = isLengthValid(password1, "Password", 6);
@@ -65,14 +73,6 @@ class Form extends Component {
             validationMessages: [...passwordsMatchMsg, ...passwordsLengthMsg, ...passwordAlphanumericMsg]
         }, () => {
             this.checkFormCompletion();
-        });
-    }
-
-    checkFormCompletion() {
-        const { formData, validationMessages } = this.state;
-
-        this.setState({
-            buttonEnabled: isFormComplete(formData) && validationMessages.length === 0
         });
     }
 
