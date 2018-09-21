@@ -13,7 +13,7 @@ export class App extends Component {
         return fieldValues.map((field) => field.value)
     }
 
-    handleSubmit (e) {
+    handleSubmit = (e) => {
         e.preventDefault();
         console.table(this.gatherData());
     }
@@ -44,7 +44,7 @@ export class App extends Component {
     render() {
         return (
             <div className="container">
-                <form className="form" onSubmit={ (e)=> { this.handleSubmit(e) }}>
+                <form className="form" onSubmit={ this.handleSubmit }>
                     <h1 className="form__header">Would you like to know more?</h1>
                     <fieldset className="form_fieldset">
                         { this.renderField("Username", "username") }

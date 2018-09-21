@@ -12,7 +12,7 @@ const isLengthValid = (value, title, length) =>
 
 const isAlphanumeric = (value, title) => {
     const isAlphaNumeric = () =>
-        (/\d/).test(value) && (/[a-z]/i).test(value);
+        (/(\d+\w+)|(\w+\d+)[\w|\d]?/).test(value);
     return (!isAlphaNumeric() && value.length > 0) ? [`${title} need to include both letters numbers`] : [];
 };
 
@@ -40,8 +40,6 @@ class Form extends Component {
             formSubmitted: false,
             validationMessages: []
         };
-
-        this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(e) {
