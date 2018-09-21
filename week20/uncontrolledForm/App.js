@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import _ from 'lodash';
-import "./styles.css";
+import "../styles.css";
 
 export class App extends Component {
 
@@ -10,7 +9,8 @@ export class App extends Component {
     }
 
     gatherData () {
-        return _.mapValues(this.fields, 'value');
+        const fieldValues = (Object.values(this.fields));
+        return fieldValues.map((field) => field.value)
     }
 
     handleSubmit (e) {
@@ -36,7 +36,6 @@ export class App extends Component {
     renderFooter() {
         return (
             <footer className="footer">
-                <span className="footer__error">Passwords do not match</span>
                 <button className="footer__button" type="submit">Submit</button>
             </footer>
         )

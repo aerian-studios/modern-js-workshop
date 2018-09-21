@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import FormInput from "./formInput";
 import Footer from "./footer";
 import FormSelect from "./formSelect";
-import _ from "lodash";
-
 
 // Helper functions
 const isMatchValid = (value1, value2, title) =>
@@ -19,8 +17,8 @@ const isAlphanumeric = (value, title) => {
 };
 
 const isFormComplete = (formData) => {
-    const fieldsCompleted = _.map(formData, (data) => data.length > 0 );
-    return _.every(fieldsCompleted, (field)=> field);
+    const fieldsValues = Object.values(formData);
+    return fieldsValues.every((data) => data.length > 0)
 };
 
 
@@ -42,6 +40,8 @@ class Form extends Component {
             formSubmitted: false,
             validationMessages: []
         };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(e) {
@@ -80,7 +80,7 @@ class Form extends Component {
         const { value, name } = e.target;
 
         this.setState({
-            formData: { ...this.state.formData, [name]: _.trimStart(value) }
+            formData: { ...this.state.formData, [name]: value }
             }, () => {
             this.validation();
         });
@@ -107,34 +107,34 @@ class Form extends Component {
                             value={ title }
                             label="Title"
                             id="title"
-                            callBack={(e) => { this.handleChange(e)}} />
+                            callBack={ this.handleChange } />
                         <FormInput
                             value={ firstname }
                             label="First name"
                             id="firstname"
-                            callBack={(e) => { this.handleChange(e)}} />
+                            callBack={ this.handleChange } />
                         <FormInput
                             value={ surname }
                             label="Surname"
                             id="surname"
-                            callBack={(e) => { this.handleChange(e)}} />
+                            callBack={ this.handleChange } />
                         <FormInput
                             value={ email }
                             type="email"
                             label="Email"
                             id="email"
-                            callBack={(e) => { this.handleChange(e)}} />
+                            callBack={ this.handleChange } />
                         <FormInput
                             value={ password1 }
                             label="Password"
                             hint={ "password must be at least 6 characters and contain both letters and numbers" }
                             id="password1"
-                            callBack={(e) => { this.handleChange(e)}} />
+                            callBack={ this.handleChange } />
                         <FormInput
                             value={ password2 }
                             label="Repeat password"
                             id="password2"
-                            callBack={(e) => { this.handleChange(e)}} />
+                            callBack={ this.handleChange } />
                     </fieldset>
                     <Footer
                         buttonLabelState1={ "Submit" }
