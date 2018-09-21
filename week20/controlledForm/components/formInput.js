@@ -8,9 +8,9 @@ const FormInput = ({ label, id, type, callBack, maxLength, value, isRequired, hi
             id={ id }
             name={ id }
             value={ value }
-            type={ type ? type : "text" }
+            type={ type || "text" }
             required={ isRequired }
-            maxLength={ maxLength ? maxLength : 50 }
+            maxLength={ maxLength || 50 }
             className="field__input field__input--text"
             onChange={ callBack } />
     </div>
