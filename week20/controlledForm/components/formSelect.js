@@ -8,7 +8,7 @@ const FormSelect = ({id, label, callBack, value, options}) =>
             name={ id }
             value={ value }
             className="field field--select"
-            onChange={ (e) => { callBack(e) } }>
+            onChange={ callBack }>
             {
                 options.map(({optionsValue, text}, index) =>
                 <option key={ `options-${index}` } value={ optionsValue }>{ text }</option>)
