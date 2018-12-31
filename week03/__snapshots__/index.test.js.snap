@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`inserts our emoji into the header 1`] = `"<h1 id=\\"heading\\">💂🏻💂🏼💂🏽💂🏾💂🏿💂</h1>"`;
