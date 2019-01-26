@@ -72,7 +72,7 @@ Add `let apples = 10`, note there are no quotes. Now add
 
 ##### Template literals (backticks)
 
-That's getting a bit ugly. Backticks let you put variables inside a string, a bit like double quotes in PHP. Because JS variables look ust like normal words, we need a way to show that they are a variable, which means they're wrapped in `${}`. Change the last example to:
+That's getting a bit ugly. Backticks let you put variables inside a string, a bit like double quotes in PHP. Because JS variables look just like normal words, we need a way to show that they are a variable, which means they're wrapped in `${}`. Change the last example to:
 ``console.log(`I have ${typesOfFruit.length} types of fruit`);``
 You can put any JS inside the `${}`. e.g. 
 `` console.log(`I used to have ${fruit + 1} pieces of fruit`)``
