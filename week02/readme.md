@@ -10,7 +10,7 @@ Functions are a way to *do something*. They are like a machine that performs a t
 For example, imagine there is a `vendingMachine` function that accepts a pound coin and returns a can of Coke (other fizzy drink are available). We can't drink `vendingMachine`, but if we call it we're asking it to performs a job, and can then use the thing it returns.
 
 ```javascript=
-const vendingMachine = (money) => {
+const vendingMachine = (money = 0) => {
     if (money < 1.50) {
         return "No drink for you";
     }
