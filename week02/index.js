@@ -51,7 +51,7 @@ const isFrom2004 = (movie) => {
 const API_KEY = '';// Put the api key here
 const findSomeMovies = async () => {
 
-    const results = await getSomeData("http://www.omdbapi.com/?s=starship troopers&apikey=API_KEY");
+    const results = await getSomeData(`http://www.omdbapi.com/?s=starship troopers&apikey=${API_KEY}`);
     const movies = results.Search;
     const moviesFrom2004 = movies.filter(isFrom2004);
     console.log(moviesFrom2004);
@@ -73,7 +73,7 @@ const makeHasTheTitle = (title) => (movie) => {
 };
 
 const findAMovieByYear = async (title, year) => {
-    const url = `http://www.omdbapi.com/?s=${title}&apikey=API_KEY`;
+    const url = `http://www.omdbapi.com/?s=${title}&apikey=${API_KEY}`;
     const results = await getSomeData(url);
     const movies = results.Search;
     let aMovie;
