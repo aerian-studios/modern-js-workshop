@@ -38,18 +38,17 @@ progress. For the last year's course, switch to the `2018` branch.
 -   Types: Number, String, Object, Array
 -   Functions, function expressions, arrow functions
 
-### Async and arrays
+### [Week 2 – Async and arrays](./week02)
 -   Callbacks - `Array.filter` and `Array.find`
 -   More arrays - `map`, `forEach`
 -   `async` / `await`
 -   `fetch`
 -   Template literals (backticks)
 
-### What the...
+### [Week 3 – What the...](./week03)
 
 -   Destructuring assignment
 -   `...rest` / spread
--   `Array.reduce`
 
 ### Modules and classes
 
