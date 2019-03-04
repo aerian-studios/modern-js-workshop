@@ -1,6 +1,6 @@
 # Week 4: Modules and not classes
 
-## Mod's Rule!
+## Mods Rule!
 
 Okay, so we've learned about different types of data and how they are
 structured. We've learned how to work with some of those structures and we've
@@ -110,7 +110,7 @@ See how much more readable the function is; the return from the map function in
 `splitOutUserNames` reads like a sentence that describes _what_ we are doing,
 not a bunch of code of _how_ we are doing it.
 
-##### Splitting the modlecule
+##### Splitting the modulecule
 
 Now then, modules. I've described what they are conceptually, but what are they
 actually? Let's make the above code into a module

@@ -39,7 +39,8 @@
         "prettier": "^1.15.3"
     },
     "dependencies": {
-        "babel-core": "^7.0.0-bridge.0"
+        "babel-core": "^7.0.0-bridge.0",
+        "bricks.js": "^1.8.0"
     },
     "lint-staged": {
         "*.{js,jsx,css,md,scss}": [
