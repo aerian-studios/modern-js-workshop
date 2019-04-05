@@ -1,0 +1,5 @@
+[
+    { "name": "mister", "familyName": "Ben" },
+    { "name": "johnny", "familyName": "Rico" },
+    { "name": "William", "familyName": "Adama", "rank": "Admiral" }
+]
