@@ -429,7 +429,10 @@ The `scrollThePage` function checks that `currentScroll` is not the same as
 scroll a small amount. Then it updates the `currentScroll` variable and requests
 the next frame to do it all over again.
 
-Not big and not clever... better just let the browser work its magic.
+Not big and not clever... better just let the browser work its magic. And
+really, that is the main message; jQuery made a lot of things easier to do, but
+some of it should never have been done with JavaScript, so choose the most
+appropriate technology and the simplest approach.
 
 This has been a whistle-stop run-through of some popular jQuery functions and
 their equivalent. The table below gives some more, as well as some note about
